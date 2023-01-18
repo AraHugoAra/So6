@@ -1,27 +1,57 @@
+import bcrypt from 'bcrypt'
+const saltRounds = 10
+import jwt from 'jsonwebtoken'
+
 function usersRoutes(app, db)  {
     // INDEX
     app.get('/users', async (req, res) => {
         try {
-            const respDB = await db.query('SELECT * FROM users')
-            res.json({status: 200, respDB})
+            const users = await db.query('SELECT * FROM users')
+            res.json({status: 200, users})
         }
         catch(error) {
             res.send(error)
         }
     })
-    // // SHOW
-    // app.get('/categories/:catId', async (req, res) => {
-    //     const catId = req.params.catId
-    //     try{
-    //         const respDB = await db.query(
-    //             'SELECT * FROM categories WHERE id = ?'
-    //             ,[catId])
-    //         res.json({status: 200, respDB}) 
-    //     }
-    //     catch(error){
-    //         res.json(error)
-    //     }
-    // })
+    // SHOW
+    app.get('/users/:userId', async (req, res) => {
+        const userId = req.params.userId
+        try{
+            const user = await db.query(
+                'SELECT * FROM users WHERE id = ?'
+                ,[userId])
+            res.json({status: 200, user}) 
+        }
+        catch(error){
+            res.json(error)
+        }
+    })
+    // CREATE
+    app.post('/users/create', async (req, res) => {
+        bcrypt.genSalt(saltRounds, async function(err, salt) {
+            bcrypt.hash(req.body.password, salt, async function(err, hash) {
+                const { email, name, avatar, nickname } = {...req.body}
+                const password = hash 
+                try {
+                    const respDB = await db.query(
+                        'INSERT INTO users (email, password, name, avatar, nickname) VALUES (?, ?, ?, ?, ?)'
+                        , [email, password, name, avatar, nickname])
+                    res.json({status: 200, respDB})
+                }
+                catch(error) {
+                    res.json(error)
+                }
+                })
+            })
+    })
+    }
+    // LOGIN
+    // TOKEN
+
+export default usersRoutes
+
+
+
     // // UPDATE
     // app.put('/categories/:catId', async (req, res) => {
     //     const catId = req.params.catId
@@ -30,19 +60,6 @@ function usersRoutes(app, db)  {
     //         const respDB = await db.query(
     //             'UPDATE categories SET name = ? WHERE id = ?'
     //             ,[newName, catId])
-    //         res.json({status: 200, respDB})
-    //     }
-    //     catch(error) {
-    //         res.json(error)
-    //     }
-    // })
-    // // CREATE
-    // app.post('/categories', async (req, res) => {
-    //     const name = req.body.name
-    //     try {
-    //         const respDB = await db.query(
-    //             'INSERT INTO categories (name) VALUES (?)'
-    //             , [name])
     //         res.json({status: 200, respDB})
     //     }
     //     catch(error) {
@@ -75,6 +92,3 @@ function usersRoutes(app, db)  {
     //         res.json(error)
     //     }
     // })
-    }
-
-export default usersRoutes
