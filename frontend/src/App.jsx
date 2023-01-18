@@ -1,5 +1,5 @@
 //Style
-import './sass/main.css'
+import './sass/main.scss'
 
 export default function App() {
     return(
