@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import cors from "cors"
 import { createConnection } from 'promise-mysql'
 import usersRoutes from './routes/usersRoutes.js'
+import commentsRoutes from './routes/commentsRoutes.js'
 dotenv.config()
 
 const port = process.env.PORT
@@ -31,6 +32,7 @@ createConnection(connectionOptions)
             }
         })
         usersRoutes(app, db)
+        commentsRoutes(app, db);
     })
 
 app.listen(port, () => {console.log(`🏃💨 Server is running on port ${port}`)})
