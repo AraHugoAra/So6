@@ -44,14 +44,23 @@ function commentsRoutes(app, db)  {
     //         res.json(error)
     //     }
     // })
-    // CREATE
+
+    // CREATE quel chemin ??
     app.post('/comments', async (req, res) => {
-        const body = req.body.body
-        // récupérer userId du comments + userId du post de l'image
+        // const body = req.body.body
+        const body = "Ceci est mon commentaire n°6 dasn commentsRoutes"
+        // const postId = req.params.id
+        const postId = 1
+        const userId = 2 // Mis en dur pour tester => récupérer l'email du User Connected
         try {
             const respDB = await db.query(
-                'INSERT INTO comments (body) VALUES (?)'
-                , [body])
+              // 'INSERT INTO comments (body) VALUES (?)'
+              "INSERT INTO comments(body, post_id, user_id) VALUES(?, ?, ?)",
+              [
+                body, 
+                postId, 
+                userId]
+            );
             res.json({status: 200, respDB})
         }
         catch(error) {
