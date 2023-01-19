@@ -51,7 +51,24 @@ function postsRoutes(app, db)  {
     })
 
     // POST post
+    app.post('/newpost', async (req,res) => {
+        // const user_id = req.session.user.id
+        const user_id = 1
 
+        const media = req.body.media;
+        const body = req.body.body;
+        const vegan = req.body.vegan || false ;
+        try{
+            const responseDB = await db.query(
+                "INSERT INTO posts (media,body, user_id,vegan) VALUES (?,?,?,?)",
+                [media,body, user_id,vegan]
+              );
+              res.json({ status: 200, responseDB })
+        }
+        catch(error) {
+            res.send(error)
+        }
+    })
 }
 
 export default postsRoutes
