@@ -2,6 +2,7 @@ import express, { json, urlencoded } from 'express'
 import dotenv from 'dotenv'
 import cors from "cors"
 import { createConnection } from 'promise-mysql'
+import session from 'express-session'
 import usersRoutes from './routes/usersRoutes.js'
 import postsRoutes from './routes/postsRoutes.js'
 dotenv.config()
@@ -12,6 +13,14 @@ const app = express()
 app.use(cors())
 app.use(json())
 app.use(urlencoded({extended: false}))
+app.use(session({
+    secret : process.env.SECRET,
+    resave : true,
+    saveUninitialized : true,
+    cookie: {
+        originalMaxAge: 3600000
+    }
+  }));
 
 const connectionOptions = {
     host: process.env.DB_HOST,
