@@ -2,8 +2,9 @@ import express, { json, urlencoded } from 'express'
 import dotenv from 'dotenv'
 import cors from "cors"
 import { createConnection } from 'promise-mysql'
-import usersRoutes from './routes/usersRoutes.js'
 import session from 'express-session'
+import usersRoutes from './routes/usersRoutes.js'
+import postsRoutes from './routes/postsRoutes.js'
 dotenv.config()
 
 const port = process.env.PORT
@@ -40,6 +41,7 @@ createConnection(connectionOptions)
             }
         })
         usersRoutes(app, db)
+        postsRoutes(app,db)
     })
 
 app.listen(port, () => {console.log(`🏃💨 Server is running on port ${port}`)})
