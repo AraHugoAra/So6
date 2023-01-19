@@ -17,7 +17,7 @@ function postsRoutes(app, db)  {
     })
 
     // GET post for details
-    app.get('/post/:post_id', async (req, res) => {
+    app.get('/posts/:post_id', async (req, res) => {
         const post_id = req.params.post_id
         try {
             const respDB = await db.query(
@@ -35,7 +35,7 @@ function postsRoutes(app, db)  {
     })
 
     // GET posts for user profil
-    app.get('/posts/:user_id', async (req, res) => {
+    app.get('/user/:user_id/posts', async (req, res) => {
         const user_id = req.params.user_id
         try {
             const respDB = await db.query(
