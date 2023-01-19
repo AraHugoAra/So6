@@ -22,7 +22,7 @@ function commentsRoutes(app, db)  {
         const id = req.params.id
         try{
             const respDB = await db.query(
-                'SELECT * FROM comments WHERE id = ?'
+                'SELECT * FROM comments WHERE user_id = ?'
                 ,[id])
             res.json({status: 200, respDB}) 
         }
