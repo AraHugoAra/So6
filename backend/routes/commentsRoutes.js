@@ -1,15 +1,12 @@
+import isAuthenticated from "../middleware/isAuthenticated.js"
+
 function commentsRoutes(app, db)  {
-    /**
-        - GET all
-        - GET with userID
-        - POST
-        - DELETE */
 
     // INDEX get all
     app.get('/comments', async (req, res) => {
         try {
-            const respDB = await db.query('SELECT * FROM comments')
-            res.json({status: 200, respDB})
+            const comments = await db.query('SELECT * FROM comments')
+            res.json({status: 200, comments})
         }
         catch(error) {
             res.send(error)
@@ -20,25 +17,23 @@ function commentsRoutes(app, db)  {
     app.get('/comments/:id', async (req, res) => {
         const id = req.params.id
         try{
-            const respDB = await db.query(
-                'SELECT * FROM comments WHERE id = ?'
+            const comments = await db.query(
+                'SELECT * FROM comments WHERE user_id = ?'
                 ,[id])
-            res.json({status: 200, respDB}) 
+            res.json({status: 200, comments}) 
         }
         catch(error){
             res.json(error)
         }
     })
-    // CREATE quel chemin ??
-    app.post('/comments', async (req, res) => {
-        // const body = req.body.body
-        const body = "Ceci est mon commentaire n°6 dasn commentsRoutes"
-        // const postId = req.params.id
-        const postId = 1
-        const userId = 2 // Mis en dur pour tester => récupérer l'email du User Connected
+
+    // CREATE 
+    app.post('/posts/:id/comments/add',isAuthenticated, async (req, res) => {
+        const body = req.body.body
+        const postId = req.params.id
+        const userId = req.session.user[0].id
         try {
             const respDB = await db.query(
-              // 'INSERT INTO comments (body) VALUES (?)'
               "INSERT INTO comments(body, post_id, user_id) VALUES(?, ?, ?)",
               [
                 body, 
