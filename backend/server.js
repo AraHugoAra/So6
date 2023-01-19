@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import cors from "cors"
 import { createConnection } from 'promise-mysql'
 import usersRoutes from './routes/usersRoutes.js'
+import session from 'express-session'
 dotenv.config()
 
 const port = process.env.PORT
@@ -11,6 +12,14 @@ const app = express()
 app.use(cors())
 app.use(json())
 app.use(urlencoded({extended: false}))
+app.use(session({
+    secret : process.env.SECRET,
+    resave : true,
+    saveUninitialized : true,
+    cookie: {
+        originalMaxAge: 3600000
+    }
+  }));
 
 const connectionOptions = {
     host: process.env.DB_HOST,
