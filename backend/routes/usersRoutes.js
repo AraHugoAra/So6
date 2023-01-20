@@ -59,7 +59,7 @@ function usersRoutes(app, db)  {
                     // sauver la session avant la redirection assure que la page charge après les changements de session
                     req.session.save(function (err) {
                         if (err) return next(err)
-                        res.redirect('/')
+                        res.json({status: 200, session: req.session})
                     })
                 })
             }
@@ -74,12 +74,11 @@ function usersRoutes(app, db)  {
     // LOGOUT
     app.get('/logout', async (req, res) => {
         req.session.destroy()
-        res.redirect('/')
+        res.json({status: 200, msg: 'User disconnected'})
     })
     // TEST DE SESSION / TOKEN
     app.get('/test', isAuthenticated, async (req, res) => {
-        const session = req.session
-        res.json({status: 200, session})
+        res.json({status: 200, session: req.session})
     })
 }
 

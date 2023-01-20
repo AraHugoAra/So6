@@ -12,7 +12,7 @@ dotenv.config()
 const port = process.env.PORT
 const app = express()
 
-app.use(cors())
+app.use(cors({ credentials: true, origin: true }));
 app.use(json())
 app.use(urlencoded({extended: false}))
 app.use(session({
@@ -20,7 +20,7 @@ app.use(session({
     resave : true,
     saveUninitialized : true,
     cookie: {
-        originalMaxAge: 3600000
+        maxAge: 3600000
     }
   }));
 
