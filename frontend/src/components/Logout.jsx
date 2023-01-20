@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
 
 export default function Logout() {
+    const baseUrl = import.meta.env.VITE_BASE_URL
 
     async function postFetch() {
-        await fetch('http://localhost:4000/logout', {
+        await fetch(`${import.meta.env.VITE_BASE_URL}/logout`, {
             method: 'GET',
             credentials: 'include',
         })
@@ -16,7 +17,7 @@ export default function Logout() {
 
     async function handleTest(e) {
         e.preventDefault()
-        const resp = await fetch('http://localhost:4000/test', {
+        const resp = await fetch(`${import.meta.env.VITE_BASE_URL}/test`, {
             method: 'GET',
             credentials: 'include',
         })

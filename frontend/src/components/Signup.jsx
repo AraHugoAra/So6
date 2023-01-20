@@ -1,7 +1,8 @@
 export default function Signup() {
+    const baseUrl = import.meta.env.VITE_BASE_URL
 
     async function postFetch(body) {
-        await fetch('http://localhost:4000/users/create', {
+        await fetch(`${import.meta.env.VITE_BASE_URL}/users/create`, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(body),
@@ -22,18 +23,18 @@ export default function Signup() {
     }
 
     return(
-        <form onSubmit={(e) => handleSubmit(e)} style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-            <label htmlFor="email">email</label>
-            <input type="email" id="email"/>
-            <label htmlFor="userName">userName</label>
-            <input type="text" id="userName"/>
-            <label htmlFor="nickname">nickName</label>
-            <input type="text" id="nickname"/>
-            <label htmlFor="password">password</label>
-            <input type="password" id="password"/>
-            <label htmlFor="avatar">avatar</label>
-            <input type="text" id="avatar"/>
-            <button type="submit">Submit</button>
+        <form className="signup-form" onSubmit={(e) => handleSubmit(e)}>
+            <label className="signup-form__label" htmlFor="email">Email:</label>
+            <input className="signup-form__input" type="email" id="email"/>
+            <label className="signup-form__label" htmlFor="userName">Nom complet:</label>
+            <input className="signup-form__input" type="text" id="userName"/>
+            <label className="signup-form__label" htmlFor="nickname">Pseudo:</label>
+            <input className="signup-form__input" type="text" id="nickname"/>
+            <label className="signup-form__label" htmlFor="password">Mot de passe:</label>
+            <input className="signup-form__input" type="password" id="password"/>
+            <label className="signup-form__label" htmlFor="avatar">Avatar:</label>
+            <input className="signup-form__input" type="text" id="avatar"/>
+            <button className="signup-form__button" type="submit">Se connecter</button>
         </form>
     )
 }
