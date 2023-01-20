@@ -1,5 +1,8 @@
 export default function Signup() {
     return(
-        <p>Signup</p>
+        <form>
+            <label htmlFor="email">email</label>
+            <input type="email" id="email"/>
+        </form>
     )
 }
