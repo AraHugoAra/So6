@@ -1,8 +1,17 @@
 //Style
-import './sass/main.scss'
+import './sass/main.css'
+//Dependencies
+import { Route, Routes } from 'react-router-dom'
+//Components
+import Signup from './sass/components/Signup'
+
+import React from 'react';
 
 export default function App() {
     return(
-        <h1>So6</h1>
+        // <Signup />
+        <Routes>
+            // <Route path="/signup" element={<Signup />} />
+        // </Routes>
     )
 }
