@@ -4,6 +4,8 @@ import Landing from './components/Landing'
 import './sass/main.scss'
 import Login from './components/Login'
 import Logout from './components/Logout'
+import Navbar from './components/Navbar'
+import UserProfile from './components/UserProfile'
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
       </Routes>
+        <Navbar />
+        <UserProfile />
     </div>
   )
 }
