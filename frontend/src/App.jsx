@@ -1,17 +1,17 @@
-//Style
-import './sass/main.css'
-//Dependencies
-import { Route, Routes } from 'react-router-dom'
-//Components
-import Signup from './sass/components/Signup'
+import { Route, Routes } from 'react-router'
+import Signup from './components/Signup'
+import Landing from './components/Landing'
+import './sass/main.scss'
 
-import React from 'react';
-
-export default function App() {
-    return(
-        // <Signup />
-        <Routes>
-            // <Route path="/signup" element={<Signup />} />
-        // </Routes>
-    )
+function App() {
+  return (
+    <div>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+    </div>
+  )
 }
+
+export default App
