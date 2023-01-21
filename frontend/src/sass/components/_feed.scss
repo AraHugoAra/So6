@@ -1,0 +1,40 @@
+.feed{
+    max-width: 400px;
+    margin: auto;
+}
+
+.post {
+    border: solid 2px red;
+    margin: 0.5em;
+
+    &__user{
+        display : flex;
+        align-items: center;
+        gap: 10px;
+        &__avatar{
+            width: 40px;
+        }
+    }
+    &__buttons{
+        display: flex;
+        gap: 10px;
+    }
+    &__media {
+        display: flex;
+        justify-content: center;
+        img{
+            max-width: 100%;
+        }
+    }
+    &__text{
+        .body{
+            border-top: solid 1px;
+            border-bottom: solid 1px;
+
+            padding: 0.5em;
+        }
+        .comments{
+            padding : 0.5em;
+        }
+    }
+}
