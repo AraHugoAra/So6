@@ -1,0 +1,22 @@
+.feed{
+    border: solid;
+}
+
+.post {
+    // border: solid;
+
+    &__user{
+        display : flex;
+        &__avatar{
+            width: 40px;
+        }
+    }
+    &__buttons{
+        display: flex;
+    }
+    &__media {
+        img{
+            max-width: 300px;
+        }
+    }
+}
