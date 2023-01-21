@@ -34,7 +34,7 @@ export default function Feed({}) {
                     <div 
                       className="post__user">
                         <img className="post__user__avatar" src={post.avatar || "./../../public/favicon.ico"}/>
-                        <div>{post.nickname}</div>
+                        <div  className="post__user__nickname">{post.nickname}</div>
                     </div>
                     <div 
                       className="post__media">
@@ -53,9 +53,9 @@ export default function Feed({}) {
                         </div>
                     </div>
                     <div 
-                      className="post__body">
-                        <p>{post.body}</p>
-                        <p>Voir les commentaires...</p>
+                      className="post__text">
+                        <p className="post__text body">{post.body}</p>
+                        <p className="post__text comments">Voir les commentaires...</p>
                     </div>
                 </div>
             )}
