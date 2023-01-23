@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 export default function Login() {
 
     async function postFetch(body) {
-        await fetch('http://localhost:4000/login', {
+        await fetch(import.meta.env.VITE_BASE_URL+'/login', {
             method: 'POST',
             credentials: 'include',
             headers: { "Content-Type": "application/json",
@@ -23,7 +23,7 @@ export default function Login() {
     }
 
     async function handleTest() {
-        const resp = await fetch('http://localhost:4000/test', {
+        const resp = await fetch(import.meta.env.VITE_BASE_URL+'/test', {
             method: 'GET',
             credentials: 'include',
         })

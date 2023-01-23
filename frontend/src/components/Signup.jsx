@@ -1,7 +1,7 @@
 export default function Signup() {
 
     async function postFetch(body) {
-        await fetch('http://localhost:4000/users/create', {
+        await fetch(import.meta.env.VITE_BASE_URL+'/users/create', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(body),

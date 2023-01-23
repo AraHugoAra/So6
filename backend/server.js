@@ -6,6 +6,7 @@ import session from 'express-session'
 import usersRoutes from './routes/usersRoutes.js'
 import commentsRoutes from './routes/commentsRoutes.js'
 import postsRoutes from './routes/postsRoutes.js'
+import likesRoutes from './routes/likesRoutes.js'
 
 dotenv.config()
 
@@ -45,7 +46,7 @@ createConnection(connectionOptions)
         usersRoutes(app, db)
         commentsRoutes(app, db);
         postsRoutes(app,db)
-
+        likesRoutes(app, db)
     })
 
 app.listen(port, () => {console.log(`🏃💨 Server is running on port ${port}`)})
