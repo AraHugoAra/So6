@@ -10,14 +10,14 @@ import UserProfile from './components/UserProfile'
 function App() {
   return (
     <div>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="/user/:id" element={<UserProfile />}/>
       </Routes>
-        <Navbar />
-        <UserProfile />
     </div>
   )
 }
