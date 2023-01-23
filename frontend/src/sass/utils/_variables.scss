@@ -9,7 +9,7 @@ $colour-accent: $colour-brown;
 $colour-black: #171313;
 $colour-white: #FFFBFB;
 
-// $colour-borders: rgba(255, 255, 255, 0.401);
+$colour-borders: rgba(255, 255, 255, 0.401);
 // $colour-backgrounds: rgba(0, 0, 0, 0.204);
 
 /** FONT */
@@ -18,6 +18,7 @@ $colour-white: #FFFBFB;
 $font-primary: 'Open Sans', 'sans-serif';
 p {
     font-family: $font-primary;
+    color: $colour-black;
 }
 
 /** SIZE */

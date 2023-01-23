@@ -33,7 +33,7 @@ export default function Feed({}) {
                   key={post.id}>
                     <div 
                       className="post__user">
-                        <img className="post__user__avatar" src={post.avatar || "./../../public/favicon.ico"}/>
+                        <img className="post__user__avatar avatar" src={post.avatar || "./../../public/favicon.ico"}/>
                         <div  className="post__user__nickname">{post.nickname}</div>
                     </div>
                     <div 
