@@ -33,12 +33,12 @@ export default function Login() {
 
     return(
         <div>
-            <form onSubmit={(e) => handleSubmit(e)} style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-                <label htmlFor="email">email</label>
+            <form onSubmit={(e) => handleSubmit(e)}>
+                <label htmlFor="email">Email</label>
                 <input type="email" id="email"/>
-                <label htmlFor="password">password</label>
+                <label htmlFor="password">Password</label>
                 <input type="password" id="password"/>
-                <button type="submit">Submit</button>
+                <button type="submit">Se connecter</button>
             </form>
             <button onClick={() => handleTest()}>Test Login</button>
             <Link to="/logout">Logout</Link>

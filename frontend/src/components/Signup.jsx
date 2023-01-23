@@ -23,18 +23,28 @@ export default function Signup() {
     }
 
     return(
-        <form className="signup-form" onSubmit={(e) => handleSubmit(e)}>
-            <label className="signup-form__label" htmlFor="email">Email:</label>
-            <input className="signup-form__input" type="email" id="email"/>
-            <label className="signup-form__label" htmlFor="userName">Nom complet:</label>
-            <input className="signup-form__input" type="text" id="userName"/>
-            <label className="signup-form__label" htmlFor="nickname">Pseudo:</label>
-            <input className="signup-form__input" type="text" id="nickname"/>
-            <label className="signup-form__label" htmlFor="password">Mot de passe:</label>
-            <input className="signup-form__input" type="password" id="password"/>
-            <label className="signup-form__label" htmlFor="avatar">Avatar:</label>
-            <input className="signup-form__input" type="text" id="avatar"/>
-            <button className="signup-form__button" type="submit">Se connecter</button>
-        </form>
+        <div className="container">
+            <div className="signup__logo">
+                <img src="./assets/logo" alt="so6-logo" />
+            </div>
+            <div className="signup__form">
+                <form onSubmit={(e) => handleSubmit(e)}>
+                    <label htmlFor="email">Email:</label>
+                    <input type="email" id="email"/>
+                    <label htmlFor="userName">Nom complet:</label>
+                    <input type="text" id="userName"/>
+                    <label htmlFor="nickname">Pseudo:</label>
+                    <input type="text" id="nickname"/>
+                    <label htmlFor="password">Mot de passe:</label>
+                    <input type="password" id="password"/>
+                    <label htmlFor="avatar">Avatar:</label>
+                    <input type="text" id="avatar"/>
+                    <button type="submit">S'inscrire</button>
+                </form>
+            </div>
+            <footer className="signup__footer">
+
+            </footer>
+        </div>
     )
 }
