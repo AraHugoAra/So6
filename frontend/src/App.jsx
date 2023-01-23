@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router'
 import Signup from './components/Signup'
+import Footer from './components/Footer'
 import Landing from './components/Landing'
 import './sass/main.scss'
 import Login from './components/Login'
@@ -11,15 +12,13 @@ import PostsGrid from './components/PostsGrid'
 function App() {
   return (
     <div>
-      <Navbar />
-      <UserProfile />
       <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<><Navbar /><Landing /></>} />
+        <Route path="/signup" element={<><Signup /><Footer /></>} />
+        <Route path="/login" element={<><Login /><Footer /></>} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="/user/:id" element={<><UserProfile /><PostsGrid /></>}/>
       </Routes>
-        <PostsGrid />
     </div>
   )
 }

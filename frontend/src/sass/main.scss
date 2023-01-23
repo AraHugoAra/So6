@@ -1,23 +1,31 @@
 @import "./utils/reset";
 @import "./utils/variables";
-@import "./components/navbar";
-@import "./components/avatar";
-@import "./components/user-profile";
-@import "./components/feed";
-@import "./components/posts-grid";
+
 // @import "./utils/keyframes";
 // @import "./utils/variables";
 // @import "./utils/functions";
 // @import "./utils/mixins";
 // @import "./utils/extensions";
 
-@import "./base/_base";
-@import "./base/_typography";
-
-@import "./components/_forms";
+@import "./base/base";
+@import "./base/typography";
 
 
-// @import "./layout/_banner";
+// @import "./components/buttons";
+@import "./components/navbar";
+@import "./components/avatar";
+@import "./components/user-profile";
+@import "./components/feed";
+@import "./components/navbar";
+@import "./components/avatar";
+@import "./components/user-profile";
+@import "./components/feed";
+@import "./components/forms";
+@import "./components/footer";
 
 
-// @import "./pages/_music";
+@import "./layout/container";
+
+
+@import "./pages/signup";
+@import "./pages/login";

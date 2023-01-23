@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react"
+import Like from "./Like";
+
+import Comment from "./../assets/icons/salt-light-mode.svg"
 
 export default function Feed({}) {
     const [posts, setPosts] = useState(null)
@@ -6,6 +9,7 @@ export default function Feed({}) {
     const [error, setError] =  useState(null)
 
     function fetchPosts(url){
+        setLoading(true)
         fetch(url)
             .then((res) =>{ 
                 return res.json()
@@ -42,15 +46,13 @@ export default function Feed({}) {
                     </div>
                     <div 
                       className="post__buttons">
-                        <div>
-                            {post.number_of_like}
+                        <div
+                          className="post__buttons__like">
+                            <Like target_id={post.id} target_type={0}/>
+                            <p>{post.number_of_like} J'aime</p>
                         </div>
-                        <div>
-                            J'aime
-                        </div>
-                        <div>
-                            Commenter
-                        </div>
+                        
+                        <img src={Comment}/>
                     </div>
                     <div 
                       className="post__text">

@@ -68,7 +68,7 @@ function usersRoutes(app, db)  {
             }
         }
         catch(error) {
-            res.json({status: 401, error})
+            res.json({status: 401, msg: 'bad connexion id', error})
         }
     })
     // LOGOUT

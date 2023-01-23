@@ -1,20 +1,27 @@
 .feed{
-    max-width: 400px;
+    max-width: $max-width;
     margin: auto;
 }
 
 .post {
-    border: solid 2px red;
-    margin: 0.5em;
-
     &__user{
         display : flex;
         align-items: center;
         gap: 10px;
+        &__nickname:hover{
+            cursor: pointer;
+            color: $colour-accent;
+        }
     }
     &__buttons{
         display: flex;
         gap: 10px;
+        margin: 5px;
+        align-items: flex-start;
+        &__like{
+            font-size: xx-small;
+            text-align: center;
+        }
     }
     &__media {
         display: flex;
@@ -32,6 +39,7 @@
         }
         .comments{
             padding : 0.5em;
+            color: $colour-secondary;
         }
     }
 }
