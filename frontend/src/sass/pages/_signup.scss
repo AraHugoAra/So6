@@ -1,0 +1,15 @@
+.signup {
+    min-height: 100vh;
+    &__logo {
+        margin: 1rem auto;
+        text-align: center;
+        max-width: 250px;
+        img {
+            width: 40%;
+        }
+    }
+    &__flavour-text {
+        font-weight: bold;
+        color: $colour-secondary;
+    }
+}

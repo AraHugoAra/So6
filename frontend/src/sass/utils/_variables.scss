@@ -8,8 +8,9 @@ $colour-secondary: $colour-grey;
 $colour-accent: $colour-brown;
 $colour-black: #171313;
 $colour-white: #FFFBFB;
+$colour-links: rgb(35, 35, 158);
 
-// $colour-borders: rgba(255, 255, 255, 0.401);
+$colour-borders: $colour-secondary;
 // $colour-backgrounds: rgba(0, 0, 0, 0.204);
 
 /** FONT */
@@ -21,9 +22,8 @@ p {
 }
 
 /** SIZE */
-
 //container
-$max-width : 1250px;
+$max-width: 1250px;
 // avatar
 $avatar-large: 5em;
 $avatar: 1em;
