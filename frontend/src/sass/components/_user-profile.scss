@@ -4,14 +4,11 @@
   margin-bottom: 8px;
   background: $colour-white;
   padding: 8px 16px;
-  border: 1px solid $colour-sausage;
-  p {
-      flex-grow: 1;
-      padding: 0 24px;
-      margin: 0;
-      line-height: 1.4;
-    }
-
-
-
+  border: 1px solid $colour-white;
+    p {
+        flex-grow: 1;
+        padding: 0 24px;
+        margin: 0;
+        line-height: 1.4;
+      }
 }

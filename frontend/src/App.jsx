@@ -7,18 +7,17 @@ import Login from './components/Login'
 import Logout from './components/Logout'
 import Navbar from './components/Navbar'
 import UserProfile from './components/UserProfile'
+import PostsGrid from './components/PostsGrid'
 
 function App() {
   return (
     <div>
-      <Navbar />
       <Routes>
-        
         <Route path="/" element={<><Navbar /><Landing /></>} />
         <Route path="/signup" element={<><Signup /><Footer /></>} />
         <Route path="/login" element={<><Login /><Footer /></>} />
         <Route path="/logout" element={<Logout />} />
-        <Route path="/user/:id" element={<UserProfile />}/>
+        <Route path="/user/:id" element={<><UserProfile /><PostsGrid /></>}/>
       </Routes>
     </div>
   )

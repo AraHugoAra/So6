@@ -8,12 +8,6 @@
         display : flex;
         align-items: center;
         gap: 10px;
-        &__avatar{
-            width: 40px;
-            height:auto;
-            border-radius: 100%;
-            border: solid 2px $colour-brown;
-        }
         &__nickname:hover{
             cursor: pointer;
             color: $colour-accent;

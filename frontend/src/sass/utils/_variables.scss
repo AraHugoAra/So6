@@ -11,6 +11,7 @@ $colour-white: #FFFBFB;
 $colour-links: rgb(35, 35, 158);
 
 $colour-borders: $colour-secondary;
+
 // $colour-backgrounds: rgba(0, 0, 0, 0.204);
 
 /** FONT */
@@ -19,6 +20,7 @@ $colour-borders: $colour-secondary;
 $font-primary: 'Open Sans', 'sans-serif';
 p {
     font-family: $font-primary;
+    color: $colour-black;
 }
 
 /** SIZE */
