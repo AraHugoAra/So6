@@ -1,0 +1,24 @@
+.navbar {
+  justify-content: space-between;
+  background: $colour-white;
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1em
+  }
+  &__logo {
+    padding: 0 0.5em;
+  }
+  .navbar-collapse {
+    flex-grow: 0;
+  } 
+  .navbar-brand {
+      img {
+        width: 40px;
+      }
+
+  }
+  
+}
+

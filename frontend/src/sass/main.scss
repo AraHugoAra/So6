@@ -1,9 +1,14 @@
-@import "./utils/_reset";
-// @import "./utils/_keyframes";
-@import "./utils/_variables";
-// @import "./utils/_functions";
-// @import "./utils/_mixins";
-// @import "./utils/_extensions";
+@import "./utils/reset";
+@import "./utils/variables";
+@import "./components/navbar";
+@import "./components/avatar";
+@import "./components/user-profile";
+@import "./components/feed";
+// @import "./utils/keyframes";
+// @import "./utils/variables";
+// @import "./utils/functions";
+// @import "./utils/mixins";
+// @import "./utils/extensions";
 
 @import "./base/_base";
 @import "./base/_typography";

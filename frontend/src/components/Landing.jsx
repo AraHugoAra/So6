@@ -1,5 +1,10 @@
+import Feed from "./Feed";
+
 export default function Landing() {
     return(
-        <p>Landing</p>
+        <div>
+            <p>Landing</p>
+            <Feed/>
+        </div>
     )
 }

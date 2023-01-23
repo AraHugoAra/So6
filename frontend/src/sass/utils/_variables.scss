@@ -1,14 +1,31 @@
-$colour-primary: #EC9168;
-$colour-secondary: #797B84;
-$colour-accent: #764134;
+/** So6 colors */
+$colour-sausage: #EC9168;
+$colour-grey: #797B84;
+$colour-brown: #764134;
+
+$colour-primary: $colour-sausage;
+$colour-secondary: $colour-grey;
+$colour-accent: $colour-brown;
 $colour-black: #171313;
 $colour-white: #FFFBFB;
 
-$colour-borders: #c9c9c9;
+// $colour-borders: rgba(255, 255, 255, 0.401);
 // $colour-backgrounds: rgba(0, 0, 0, 0.204);
 
-$font-primary: 'Roboto';
+/** FONT */
+// $font-primary: 'Roboto';
 
+$font-primary: 'Open Sans', 'sans-serif';
+p {
+    font-family: $font-primary;
+}
+
+/** SIZE */
+// avatar
+$avatar-large: 5em;
+$avatar: 1em;
+
+/** Breackpoints */
 // $breakpoints: (
 //     "mobile": "700px",
 //     "tablet": "1017px"
