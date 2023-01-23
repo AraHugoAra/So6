@@ -2,7 +2,6 @@ import { Link, redirect, useNavigate } from 'react-router-dom'
 import logo from '../assets/icons/So6_logo_light.svg'
 
 export default function Login() {
-
     const navigate = useNavigate()
 
     async function postFetch(e, body) {
