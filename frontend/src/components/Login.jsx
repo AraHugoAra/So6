@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
 
 export default function Login() {
+    const baseUrl = import.meta.env.VITE_BASE_URL
 
     async function postFetch(body) {
-        await fetch('http://localhost:4000/login', {
+        await fetch(`${import.meta.env.VITE_BASE_URL}/login`, {
             method: 'POST',
             credentials: 'include',
             headers: { "Content-Type": "application/json",
@@ -23,7 +24,7 @@ export default function Login() {
     }
 
     async function handleTest() {
-        const resp = await fetch('http://localhost:4000/test', {
+        const resp = await fetch(`${import.meta.env.VITE_BASE_URL}/test`, {
             method: 'GET',
             credentials: 'include',
         })
@@ -32,12 +33,12 @@ export default function Login() {
 
     return(
         <div>
-            <form onSubmit={(e) => handleSubmit(e)} style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-                <label htmlFor="email">email</label>
+            <form onSubmit={(e) => handleSubmit(e)}>
+                <label htmlFor="email">Email</label>
                 <input type="email" id="email"/>
-                <label htmlFor="password">password</label>
+                <label htmlFor="password">Password</label>
                 <input type="password" id="password"/>
-                <button type="submit">Submit</button>
+                <button type="submit">Se connecter</button>
             </form>
             <button onClick={() => handleTest()}>Test Login</button>
             <Link to="/logout">Logout</Link>

@@ -1,0 +1,36 @@
+form {
+    margin: auto;
+    max-width: 250px;
+    display: flex;
+    flex-direction: column;
+    label {
+        align-self: flex-start;
+        color: $colour-accent;
+        font-size: 1.5rem;
+        font-weight: 600;
+        position: relative;
+        top: 2px;
+    }
+    input {
+        min-height: 30px;
+        color: $colour-black;
+        border: 1px solid $colour-borders;
+        border-radius: 4px;
+        padding-left: 10px;
+        font-size: 1.5rem;
+        &:focus {
+            outline: 0;
+            border: 2px solid $colour-borders;
+            border-radius: 4px;
+        }
+    }
+    button {
+        background-color: $colour-primary;
+        margin-top: 2rem;
+        min-height: 30px;
+        border: none;
+        border-radius: 5px;
+        color: $colour-white;
+        font-weight: 600;
+    }
+}

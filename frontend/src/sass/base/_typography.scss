@@ -1,0 +1,43 @@
+body {
+    font-family: $font-primary, Arial, Helvetica, sans-serif;
+    color: $colour-primary;
+    font-size: 2rem;
+    font-weight: 100;
+    line-height: 1.7;
+}
+
+// h1 {
+//     font-family: 'mongolian baiti', sans-serif;
+//     letter-spacing: 5px;
+//     font-weight: 600;
+//     font-size: 4.5rem;
+//     text-transform: uppercase;
+//     color: $colour-accent;
+// }
+
+// h2 {
+//     font-family:'mongolian baiti', sans-serif;
+//     font-weight: 600;
+//     text-transform: uppercase;
+//     letter-spacing: 3px;
+//     font-size: 2.2rem;
+//     color: $colour-accent;
+// }
+
+// textarea {
+//     font-family:'mongolian baiti', sans-serif;
+//     font-weight: 100;
+//     font-size: 2rem;
+// }
+
+// button {
+//     font-family: 'mongolian baiti', sans-serif;
+//     letter-spacing: 2px;
+//     font-weight: 500;
+//     font-size: 100%;
+//     text-transform: uppercase;
+// }
+
+a {
+    text-decoration: none;
+}
