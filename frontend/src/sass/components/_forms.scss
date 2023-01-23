@@ -1,5 +1,5 @@
 form {
-    margin: auto;
+    margin: 2rem auto;
     max-width: 250px;
     display: flex;
     flex-direction: column;
@@ -23,6 +23,11 @@ form {
             border: 2px solid $colour-borders;
             border-radius: 4px;
         }
+        &::placeholder {
+            letter-spacing: 3px;
+            font-style: italic;
+            color: lighten($color: $colour-black, $amount: 60%)
+        }
     }
     button {
         background-color: $colour-primary;
@@ -32,5 +37,16 @@ form {
         border-radius: 5px;
         color: $colour-white;
         font-weight: 600;
+    }
+}
+
+.form__link {
+    color: $colour-links;
+    font-weight: 600;
+    font-size: 1.3rem;
+    position: relative;
+    bottom: 2rem;
+    &:visited {
+        color: $colour-links;
     }
 }
