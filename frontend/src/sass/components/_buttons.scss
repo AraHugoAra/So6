@@ -10,7 +10,10 @@ button{
     /* inherit font & color from ancestor */
     color: inherit;
     font: inherit;
+}
 
-
-
+.buttons__like{
+    width: 50px;
+    font-size: xx-small;
+    text-align: center;
 }

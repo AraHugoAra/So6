@@ -23,24 +23,24 @@ const PostsGrid = () => {
     useEffect(() => {
         const URL = import.meta.env.VITE_BASE_URL + "/posts"
         fetchPosts(URL)
-    },[])
+    },[posts])
 
     // user and user's posts
     return (
-      <div className="row">
-        <div className="column">
-        {loading === false &&
-          posts !== null &&
-          posts.map((post) => (
+      <article className="posts-grid">
+        <div className="posts-grid__row-images">
+          {loading === false &&
+            posts !== null &&
+            posts.map((post) => (
               <img
                 key={post.id}
-                className="post-grid__image"
+                className="posts-grid__image"
                 src={post.media}
-                alt={'image n°' + post.id}
+                alt={"image n°" + post.id}
               />
-              ))}
-              </div>
-      </div>
+            ))}
+        </div>
+      </article>
     );
 }
 

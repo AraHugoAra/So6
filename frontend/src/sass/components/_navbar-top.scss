@@ -1,6 +1,14 @@
+.navbar-top {
+  top: 0;
+  width: 100vw;
+  position: fixed;
+}  
+
 .navbar {
   justify-content: space-between;
   background: $colour-white;
+  padding-top: 12px;
+
   &__container {
     display: flex;
     align-items: center;
@@ -18,8 +26,5 @@
       img {
         width: 40px;
       }
-
   }
-  
 }
-

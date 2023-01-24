@@ -3,7 +3,8 @@
   width: $avatar;
   height: $avatar;
   object-fit: cover;
-  border: 1px solid white;
+  border: 1px solid $colour-black;
+  margin-left: 4px;
 }
 
 .avatar-large {
