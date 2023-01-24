@@ -27,6 +27,25 @@ function commentsRoutes(app, db)  {
         }
     })
 
+    // get all with post id
+    // SHOW
+    app.get('/posts/:id/comments', async (req, res) => {
+        const postId = req.params.id
+        try{
+            const comments = await db.query(
+                'SELECT comments.body, users.nickname, comments.id '+
+                'FROM comments ' +
+                'JOIN users ON users.id = comments.user_id '+
+                'WHERE comments.post_id = ? '+
+                'ORDER BY comments.timestamp;'
+                ,[postId])
+            res.json({status: 200, comments}) 
+        }
+        catch(error){
+            res.json(error)
+        }
+    })
+
     // CREATE 
     app.post('/posts/:id/comments/add',isAuthenticated, async (req, res) => {
         const body = req.body.body
