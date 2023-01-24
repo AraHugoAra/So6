@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import like from "./../assets/icons/Like-true.svg"
 import dislike from "./../assets/icons/Like-false-light.png";
 
-export default function Like({target_id, target_type,updating, setUpdating}) {
+export default function Like({target_id, target_type}) {
     const [liked, setLiked] = useState(null)
     const [numberLike, setNumberLike] = useState()
-
+    const [updating, setUpdating] = useState(null)
     const [loading, setLoading] = useState(null)
     const [error, setError] =  useState(null)
 
@@ -22,7 +22,6 @@ export default function Like({target_id, target_type,updating, setUpdating}) {
             .catch((err) => {
                 setError(err)
                 setLoading(false)
-                setUpdating(u => !u)
             })
     }
 
@@ -35,12 +34,10 @@ export default function Like({target_id, target_type,updating, setUpdating}) {
             .then ((data) => {
                 setNumberLike(data.likes[0].number_of_like)
                 setLoading(false)
-                setUpdating(u => !u)
             })
             .catch((err) => {
                 setError(err)
                 setLoading(false)
-                setUpdating(u => !u)
             })
     }
 
@@ -80,7 +77,7 @@ export default function Like({target_id, target_type,updating, setUpdating}) {
                 credentials: "include",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    target_id : parseInt( targetId),
+                    target_id : parseInt(targetId),
                     target_type : parseInt(targetType),
                 })
             }
@@ -118,7 +115,7 @@ export default function Like({target_id, target_type,updating, setUpdating}) {
                 <img src={like}/> :
                 <img src={dislike}/>    
             }
-            <p>{numberLike} J'aime</p>
+            <p>{numberLike} J'aime{numberLike > 1 && "s"}</p>
         </button>
     )
 }
