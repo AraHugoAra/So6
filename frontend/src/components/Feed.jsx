@@ -7,6 +7,7 @@ export default function Feed({}) {
     const [posts, setPosts] = useState(null)
     const [loading, setLoading] = useState(null)
     const [error, setError] =  useState(null)
+    const [updating, setUpdating] = useState(false)
 
     function fetchPosts(url){
         setLoading(true)
@@ -48,8 +49,7 @@ export default function Feed({}) {
                       className="post__buttons">
                         <div
                           className="post__buttons__like">
-                            <Like target_id={post.id} target_type={0}/>
-                            <p>{post.number_of_like} J'aime</p>
+                            <Like target_id={post.id} target_type={0} updating={updating} setUpdating={setUpdating}/>
                         </div>
                         
                         <img src={Comment}/>
