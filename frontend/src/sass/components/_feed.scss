@@ -14,18 +14,38 @@
         display : flex;
         align-items: center;
         gap: 10px;
+        padding: 14px 4px 14px 16px;
+        &__text {
+            padding-left: 12px;
+            &__nickname {
+                font-size: 15px;
+                font-weight: 600;
+                &:hover{
+                    cursor: pointer;
+                    color: $colour-accent;
+                }
+            }
+            &__body {
+                font-size: 12px;
+                font-weight: 300;
+            }
+
+        }
     }
     &__buttons{
         display: flex;
-        gap: 10px;
+        padding: 14px 4px 14px 16px;
+        gap: 16px;
         margin: 5px;
         align-items: flex-start;
     }
     &__media {
         display: flex;
         justify-content: center;
-        img{
-            max-width: 100%;
+        img { 
+            width: 100vw;
+            height: 100vw; 
+
         }
     }
     &__text{

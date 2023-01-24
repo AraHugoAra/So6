@@ -5,9 +5,10 @@ import Landing from './components/Landing'
 import './sass/main.scss'
 import Login from './components/Login'
 import Logout from './components/Logout'
-import Navbar from './components/Navbar'
+import NavbarTop from './components/NavbarTop'
 import UserProfile from './components/UserProfile'
 import PostsGrid from './components/PostsGrid'
+import NavbarBottom from './components/NavbarBottom'
 
 function App() {
   return (
@@ -17,8 +18,9 @@ function App() {
           path="/"
           element={
             <>
-              <Navbar />
+              <NavbarTop />
               <Landing />
+              <NavbarBottom />
             </>
           }
         />
@@ -44,9 +46,10 @@ function App() {
           path="/users/:id"
           element={
             <>
-              <Navbar />
+              <NavbarTop />
               <UserProfile />
               <PostsGrid />
+              <NavbarBottom />
             </>
           }
         />

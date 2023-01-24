@@ -12,43 +12,51 @@ export default function Feed({}) {
 
   const { data, loading, error } = useFetch("posts", {}, [modalIsOpen]);
 
-  return (
-    <div className="feed">
-      {!loading &&
-        !error &&
-        data.posts &&
-        data.posts.map((post) => (
-          <div className="post" key={post.id}>
-            <div className="post__user">
-              <Link className="post__link" to={`/users/${post.user_id}`}>
-                <img
-                  className="post__user__avatar avatar"
-                  src={post.avatar || "./../../public/favicon.ico"}
-                  alt="avatar"
+    return (
+      <div className="feed">
+        {!loading &&
+          !error &&
+          data.posts &&
+          data.posts.map((post) => (
+            <div className="post" key={post.id}>
+              <div className="post__user">
+                <Link className="post__link" to={`/users/${post.user_id}`}>
+                  <img
+                    className="post__user__avatar avatar"
+                    src={post.avatar || "./../../public/favicon.ico"}
+                  />
+                </link>
+                <div className="post__user__text">
+                  <Link className="post__link" to={`/users/${post.user_id}`}>
+                    <p className="post__user__text__nickname">{post.nickname}</p>
+                  </link>
+                    <p className="post__user__text__body body">{post.body}</p>
+                    
+                </div>
+              </div>
+              <div className="post__media">
+                  <PostDetail
+                  media={post.media}
+                  postId={post.id}
+                  modalIsOpen={modalIsOpen}
+                  setIsOpen={setIsOpen}
                 />
-              </Link>
-              <Link className="post__link" to={`/users/${post.user_id}`}>
-                <div className="post__user__nickname">{post.nickname}</div>
-              </Link>
+              </div>
+              <div className="post__buttons">
+                <div className="post__buttons__like">
+                  <Like target_id={post.id} target_type={0} />
+                </div>
+                <button>
+                  <img src={Comment} alt='comment-icon'/>
+                </button>
+              </div>
+              <div className="post__comments">
+                <p className="post__comments comments">
+                  Voir les commentaires...
+                </p>
+              </div>
             </div>
-            <div className="post__media">
-              <PostDetail
-                media={post.media}
-                postId={post.id}
-                modalIsOpen={modalIsOpen}
-                setIsOpen={setIsOpen}
-              />
-            </div>
-            <div className="post__buttons">
-              <Like target_id={post.id} target_type={0} />
-              <img src={Comment} />
-            </div>
-            <div className="post__text">
-              <p className="post__text body">{post.body}</p>
-              <p className="post__text comments">Voir les commentaires...</p>
-            </div>
-          </div>
-        ))}
-    </div>
-  );
+          ))}
+      </div>
+    );
 }
