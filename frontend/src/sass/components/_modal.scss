@@ -1,0 +1,9 @@
+.modal {
+    &__description {
+        &--logout {
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.6rem;
+        }
+    }
+}
