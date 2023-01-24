@@ -27,7 +27,7 @@ export default function Signup() {
         else {
             postFetch(body)
             e.target.reset()
-            navigate('/')
+            navigate('/login')
         }
     }
 
