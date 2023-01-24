@@ -1,5 +1,6 @@
-import { Link, redirect, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import logo from '../assets/icons/So6_logo_light.svg'
+
 
 export default function Login() {
     const navigate = useNavigate()
@@ -26,7 +27,7 @@ export default function Login() {
         }
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault()
         const body = {
             email: e.target.elements.email.value,
