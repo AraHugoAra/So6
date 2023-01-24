@@ -1,13 +1,17 @@
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+
+import Chat from "./../assets/icons/information.svg";
 
 export default function Logout() {
-    const baseUrl = import.meta.env.VITE_BASE_URL
+
+const navigate = useNavigate()
 
     async function postFetch() {
         await fetch(`${import.meta.env.VITE_BASE_URL}/logout`, {
             method: 'GET',
             credentials: 'include',
         })
+        navigate('/login')
     }
 
     function handleClick(e) {
@@ -15,19 +19,7 @@ export default function Logout() {
         postFetch()
     }
 
-    async function handleTest(e) {
-        e.preventDefault()
-        const resp = await fetch(`${import.meta.env.VITE_BASE_URL}/test`, {
-            method: 'GET',
-            credentials: 'include',
-        })
-    }
-
     return(
-        <div>
-            <button onClick={(e) => handleClick(e)}>Logout</button>
-            <button onClick={(e) => handleTest(e)}>Test Session</button>
-            <Link to="/login">Login</Link>
-        </div>
+        <img src={Chat} onClick={(e) => handleClick(e)} />
     )
 }

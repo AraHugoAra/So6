@@ -1,37 +1,43 @@
 import { useState, useEffect } from "react"
 import Like from "./Like";
 
+import useFetch from "../hooks/useFetch";
+
 import Comment from "./../assets/icons/salt-light-mode.svg"
 
 export default function Feed({}) {
-    const [posts, setPosts] = useState(null)
-    const [loading, setLoading] = useState(null)
-    const [error, setError] =  useState(null)
+    // const [posts, setPosts] = useState(null)
+    // const [loading, setLoading] = useState(null)
+    // const [error, setError] =  useState(null)
 
-    function fetchPosts(url){
-        setLoading(true)
-        fetch(url)
-            .then((res) =>{ 
-                return res.json()
-            })
-            .then ((data) => {
-                setPosts(data.posts)
-                setLoading(false)
-            })
-            .catch((err) => {
-                setError(err)
-                setLoading(false)
-            })
-    }
+    // function fetchPosts(url){
+    //     setLoading(true)
+    //     fetch(url)
+    //         .then((res) =>{ 
+    //             return res.json()
+    //         })
+    //         .then ((data) => {
+    //             setPosts(data.posts)
+    //             setLoading(false)
+    //         })
+    //         .catch((err) => {
+    //             setError(err)
+    //             setLoading(false)
+    //         })
+    // }
 
-    useEffect(() => {
-        const url = import.meta.env.VITE_BASE_URL + "/posts"
-        fetchPosts(url)
-    },[])
+    // useEffect(() => {
+    //     const url = import.meta.env.VITE_BASE_URL + "/posts"
+    //     fetchPosts(url)
+    // },[])
+
+    // const fetch = useFetch('posts', {})
+
+    const { data, loading, error } = useFetch('posts', {}, [])
 
     return(
         <div className="feed">
-            {loading === false && posts!== null && posts.map((post) => 
+            {(!loading && !error && data.posts) && data.posts.map((post) => 
                 <div 
                   className="post"
                   key={post.id}>
