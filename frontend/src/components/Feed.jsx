@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react"
 import Like from "./Like";
 
 import useFetch from "../hooks/useFetch";
@@ -28,9 +27,8 @@ export default function Feed({}) {
                       className="post__buttons">
                         <div
                           className="post__buttons__like">
-                            <Like target_id={post.id} target_type={0} updating={updating} setUpdating={setUpdating}/>
+                            <Like target_id={post.id} target_type={0}/>
                         </div>
-                        
                         <img src={Comment}/>
                     </div>
                     <div 
