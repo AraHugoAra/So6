@@ -13,13 +13,46 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<><Navbar /><Landing /></>} />
-        <Route path="/signup" element={<><Signup /><Footer /></>} />
-        <Route path="/login" element={<><Login /><Footer /></>} />
-        <Route path="/user/:id" element={<><UserProfile /><PostsGrid /></>}/>
+        <Route
+          path="/"
+          element={
+            <>
+              <Navbar />
+              <Landing />
+            </>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <>
+              <Signup />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <>
+              <Login />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/users/:id"
+          element={
+            <>
+              <Navbar />
+              <UserProfile />
+              <PostsGrid />
+            </>
+          }
+        />
       </Routes>
     </div>
-  )
+  );
 }
 
 export default App
