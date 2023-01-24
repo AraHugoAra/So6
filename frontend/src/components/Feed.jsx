@@ -25,11 +25,11 @@ export default function Feed({}) {
                     className="post__user__avatar avatar"
                     src={post.avatar || "./../../public/favicon.ico"}
                   />
-                </link>
+                </Link>
                 <div className="post__user__text">
                   <Link className="post__link" to={`/users/${post.user_id}`}>
                     <p className="post__user__text__nickname">{post.nickname}</p>
-                  </link>
+                  </Link>
                     <p className="post__user__text__body body">{post.body}</p>
                     
                 </div>

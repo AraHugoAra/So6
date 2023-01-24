@@ -22,7 +22,7 @@ function usersRoutes(app, db)  {
                 ,[userId])
             res.json({status: 200, user}) 
         }
-        catch(error){
+        catch(error) {
             res.json(error)
         }
     })
