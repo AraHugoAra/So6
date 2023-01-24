@@ -9,4 +9,10 @@
     &__post{
         background-color: $colour-white;
     }
+    &__post{
+        .modal__media{
+            width: 100%;
+            height: auto;
+        }
+    }
 }

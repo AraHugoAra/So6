@@ -5,7 +5,7 @@ import Landing from './components/Landing'
 import './sass/main.scss'
 import Login from './components/Login'
 import Logout from './components/Logout'
-import NavbarTop from './components/Navbar'
+import NavbarTop from './components/NavbarTop'
 import UserProfile from './components/UserProfile'
 import PostsGrid from './components/PostsGrid'
 import NavbarBottom from './components/NavbarBottom'
@@ -52,7 +52,7 @@ function App() {
           }
         />
         <Route
-          path="/user/:id"
+          path="/users/:id"
           element={
             <AuthChecker>
               <NavbarTop />

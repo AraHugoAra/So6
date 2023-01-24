@@ -1,10 +1,14 @@
-.comment{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    
-    &__info{
+.commentDetails{
         display: flex;
-        font-size: small;
+        justify-content: space-between;
+        
+        &__info{
+            display: flex;
+            font-size: small;
+            gap: 1em;
+            &--user{
+                display: flex;
+                gap: 0.5em;
+            }
+        }
     }
-}
