@@ -76,9 +76,9 @@ function usersRoutes(app, db)  {
         req.session.destroy()
         res.json({status: 200, msg: 'User disconnected'})
     })
-    // TEST DE SESSION / TOKEN
-    app.get('/test', isAuthenticated, async (req, res) => {
-        res.json({status: 200, session: req.session})
+    // CHECK DE SESSION / TOKEN
+    app.get('/api/auth', isAuthenticated, async (req, res) => {
+        res.json({status: 200, msg: 'User is authenticated'})
     })
 }
 

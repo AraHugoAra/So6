@@ -5,23 +5,32 @@ import Landing from './components/Landing'
 import './sass/main.scss'
 import Login from './components/Login'
 import Logout from './components/Logout'
-import NavbarTop from './components/NavbarTop'
+import NavbarTop from './components/Navbar'
 import UserProfile from './components/UserProfile'
 import PostsGrid from './components/PostsGrid'
 import NavbarBottom from './components/NavbarBottom'
+import { AuthContext } from "./context/AuthContext";
+import { useState } from "react";
+import AuthChecker from "./services/AuthChecker";
 
 function App() {
+  const [auth, setAuth] = useState(false);
   return (
-    <div>
+    <AuthContext.Provider
+      value={{
+        isAuthenticated: auth,
+        setIsAuthenticated: setAuth,
+      }}
+    >
       <Routes>
         <Route
           path="/"
           element={
-            <>
+            <AuthChecker>
               <NavbarTop />
               <Landing />
               <NavbarBottom />
-            </>
+            </AuthChecker>
           }
         />
         <Route
@@ -43,19 +52,19 @@ function App() {
           }
         />
         <Route
-          path="/users/:id"
+          path="/user/:id"
           element={
-            <>
+            <AuthChecker>
               <NavbarTop />
               <UserProfile />
               <PostsGrid />
               <NavbarBottom />
-            </>
+            </AuthChecker>
           }
         />
       </Routes>
-    </div>
+    </AuthContext.Provider>
   );
 }
 
-export default App
+export default App;
