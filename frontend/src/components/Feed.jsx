@@ -1,12 +1,16 @@
-import Like from "./Like";
-
+import { useState } from "react";
 import useFetch from "../hooks/useFetch";
+import { Link } from "react-router-dom";
 
-import Comment from "./../assets/icons/salt-light-mode.svg"
+import Like from "./Like";
+import PostDetail from "./PostDetail";
+
+import Comment from "./../assets/icons/salt-light-mode.svg";
 
 export default function Feed({}) {
+  const [modalIsOpen, setIsOpen] = useState(false);
 
-    const { data, loading, error } = useFetch('posts', {}, [])
+  const { data, loading, error } = useFetch("posts", {}, [modalIsOpen]);
 
     return (
       <div className="feed">
@@ -16,17 +20,27 @@ export default function Feed({}) {
           data.posts.map((post) => (
             <div className="post" key={post.id}>
               <div className="post__user">
-                <img
-                  className="post__user__avatar avatar"
-                  src={post.avatar || "./../../public/favicon.ico"}
-                />
+                <Link className="post__link" to={`/users/${post.user_id}`}>
+                  <img
+                    className="post__user__avatar avatar"
+                    src={post.avatar || "./../../public/favicon.ico"}
+                  />
+                </link>
                 <div className="post__user__text">
-                  <p className="post__user__text__nickname">{post.nickname}</p>
-                  <p className="post__user__text__body body">{post.body}</p>
+                  <Link className="post__link" to={`/users/${post.user_id}`}>
+                    <p className="post__user__text__nickname">{post.nickname}</p>
+                  </link>
+                    <p className="post__user__text__body body">{post.body}</p>
+                    
                 </div>
               </div>
               <div className="post__media">
-                <img src={post.media} />
+                  <PostDetail
+                  media={post.media}
+                  postId={post.id}
+                  modalIsOpen={modalIsOpen}
+                  setIsOpen={setIsOpen}
+                />
               </div>
               <div className="post__buttons">
                 <div className="post__buttons__like">

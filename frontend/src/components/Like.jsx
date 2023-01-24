@@ -110,7 +110,9 @@ export default function Like({target_id, target_type}) {
     },[updating])
     
     return(
-        <button onClick={() => handleLike(target_id,target_type)}>
+        <button 
+          onClick={() => handleLike(target_id,target_type)}
+          className="buttons__like">
             {liked?.isLiked ? 
                 <img src={like}/> :
                 <img src={dislike}/>    
