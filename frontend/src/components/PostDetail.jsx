@@ -108,23 +108,33 @@ export default function PostDetail({ media, postId, modalIsOpen, setIsOpen }) {
               <div className="post__text">
                 <p className="post__text body">{post.body}</p>
                 <div className="post__comments">
-                    {!loading && !error && comments && comments.map((comment) => (
-                        <div
-                            className="comment" 
-                            key={comment.id}>
-                            <div
-                                className="comment__user">
-                                <img 
-                                    className="comment__user--avatar avatar"
-                                    src={post.avatar || "./../../public/favicon.ico"}
-                                    alt="avatar"
-                                />
-                                <p
-                                    className="comment__user--body">
-                                {comment.nickname}</p>
-                            </div>
+                  {!loading &&
+                    !error &&
+                    comments &&
+                    comments.map((comment) => (
+                      <div className="comment" key={comment.id}>
+                        <div className="comment__info">
+                          <div
+                            // Attention double class en attendant de finaliser le style de comment__user
+                            className="comment__user post__user"
+                          >
+                            <img
+                              className="comment__user--avatar avatar"
+                              src={post.avatar || "./../../public/favicon.ico"}
+                              alt="avatar"
+                            />
+                            <p className="comment__user--nickname">
+                              {comment.nickname}:&nbsp;
+                            </p>
+                          </div>
+                          <div className="comment__body">
                             <p>{comment.body}</p>
+                          </div>
                         </div>
+                        <div className="comment__like">
+                          <Like target_id={comment.id} target_type={1} />
+                        </div>
+                      </div>
                     ))}
                 </div>
               </div>
