@@ -5,7 +5,7 @@ function postsRoutes(app, db)  {
     app.get('/posts', async (req, res) => {
         try {
             const posts = await db.query(
-                "SELECT posts.id,posts.timestamp,posts.media,posts.body,posts.vegan,users.nickname, users.avatar , COUNT(likes.user_id) as number_of_like "+
+                "SELECT posts.id,posts.timestamp,posts.media,posts.body,posts.vegan, posts.user_id,users.nickname, users.avatar , COUNT(likes.user_id) as number_of_like "+
                 "FROM posts " +
                 "INNER JOIN users ON users.id = posts.user_id "+
                 "LEFT JOIN likes ON posts.id = likes.target_id AND likes.target_type=0 "+
