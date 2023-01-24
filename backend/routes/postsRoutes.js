@@ -23,10 +23,9 @@ function postsRoutes(app, db)  {
         const post_id = req.params.post_id
         try {
             const post = await db.query(
-                "SELECT posts.id,posts.timestamp,posts.media,posts.body,posts.vegan,users.nickname, users.avatar, COUNT(likes.user_id) as number_of_like "+
+                "SELECT posts.id,posts.timestamp,posts.media,posts.body,posts.vegan,users.nickname, users.avatar "+
                 "FROM posts " +
-                "INNER JOIN users ON users.id = posts.user_id "+
-                "LEFT JOIN likes ON posts.id = likes.target_id WHERE target_type=0 and target_id = ?",
+                "INNER JOIN users ON users.id = posts.user_id ",
                 [post_id]
                 )
             res.json({status: 200, post})
