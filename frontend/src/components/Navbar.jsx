@@ -3,6 +3,7 @@ import Logo from "./../assets/icons/So6_logo_light.svg";
 import Chat from "./../assets/icons/chat-light-mode.svg";
 import Like from "./../assets/icons/Like-false-light.png";
 import Add from "./../assets/icons/Add_light.svg";
+import Logout from './Logout';
 
 const Navbar = () => {
     return (
@@ -52,6 +53,7 @@ const Navbar = () => {
               <a className="navbar__logo" href="/">
                 <img src={Add} />
               </a>
+              <Logout />
             </div>
           </div>
         </div>

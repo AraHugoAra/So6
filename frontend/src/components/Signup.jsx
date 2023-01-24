@@ -1,7 +1,8 @@
 import logo from '../assets/icons/So6_logo_light.svg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function Signup() {
+    const navigate = useNavigate()
 
     async function postFetch(body) {
         await fetch(`${import.meta.env.VITE_BASE_URL}/users/create`, {
@@ -20,12 +21,13 @@ export default function Signup() {
             nickname: e.target.elements.nickname.value,
             avatar: e.target.elements.avatar.value,
         }
-        if(body.password !== e.target.elements.password-confirm.value) {
+        if(body.password !== e.target.elements.passwordConfirm.value) {
             alert('Vérifiez votre mot de passe.')
         }
         else {
             postFetch(body)
             e.target.reset()
+            navigate('/')
         }
     }
 
@@ -48,7 +50,7 @@ export default function Signup() {
                     <label htmlFor="password">Mot de passe:</label>
                     <input type="password" id="password"/>
                     <label htmlFor="password-confirm">Confirmer mot de passe:</label>
-                    <input type="password" id="password-confirm"/>
+                    <input type="password" id="passwordConfirm"/>
                     <button type="submit">S'inscrire</button>
                 </form>
                 <Link className='form__link' to="/login">Connectez-vous.</Link>

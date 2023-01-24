@@ -1,37 +1,17 @@
 import { useState, useEffect } from "react"
 import Like from "./Like";
 
+import useFetch from "../hooks/useFetch";
+
 import Comment from "./../assets/icons/salt-light-mode.svg"
 
 export default function Feed({}) {
-    const [posts, setPosts] = useState(null)
-    const [loading, setLoading] = useState(null)
-    const [error, setError] =  useState(null)
 
-    function fetchPosts(url){
-        setLoading(true)
-        fetch(url)
-            .then((res) =>{ 
-                return res.json()
-            })
-            .then ((data) => {
-                setPosts(data.posts)
-                setLoading(false)
-            })
-            .catch((err) => {
-                setError(err)
-                setLoading(false)
-            })
-    }
-
-    useEffect(() => {
-        const url = import.meta.env.VITE_BASE_URL + "/posts"
-        fetchPosts(url)
-    },[])
+    const { data, loading, error } = useFetch('posts', {}, [])
 
     return(
         <div className="feed">
-            {loading === false && posts!== null && posts.map((post) => 
+            {(!loading && !error && data.posts) && data.posts.map((post) => 
                 <div 
                   className="post"
                   key={post.id}>
@@ -48,8 +28,7 @@ export default function Feed({}) {
                       className="post__buttons">
                         <div
                           className="post__buttons__like">
-                            <Like target_id={post.id} target_type={0}/>
-                            <p>{post.number_of_like} J'aime</p>
+                            <Like target_id={post.id} target_type={0} updating={updating} setUpdating={setUpdating}/>
                         </div>
                         
                         <img src={Comment}/>
