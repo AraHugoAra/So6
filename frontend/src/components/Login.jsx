@@ -3,10 +3,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import logo from '../assets/icons/So6_logo_light.svg'
 import { AuthContext } from '../context/AuthContext'
 import useFetch from '../hooks/useFetch'
-
+import { UserContext } from '../context/UserContext'
 
 export default function Login() {
     const navigate = useNavigate()
+    const {user, setUser} = useContext(UserContext)
+    
     const { data, error, loading } = useFetch('api/auth', null, [])
 
     useEffect(() => {
@@ -23,6 +25,11 @@ export default function Login() {
             })
             const json = await response.json()
             if (json.status === 200) {
+                setUser({
+                    avatar: json.session.user[0].avatar,
+                    nickname: json.session.user[0].nickname,
+                })
+                // console.log(json.session.user[0].nickname);
                 e.target.reset()
                 navigate('/')
             }
