@@ -9,11 +9,17 @@ import Comment from "./../assets/icons/salt-light-mode.svg";
 
 export default function Feed({}) {
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [postId, setPostId] = useState(null)
 
   const { data, loading, error } = useFetch("posts", {}, [modalIsOpen]);
 
-  function openModal() {
+  function openModal(post_id) {
     setIsOpen(true);
+    setPostId(post_id)
+  }
+  function closeModal() {
+    setIsOpen(false);
+    setPostId(null)
   }
 
     return (
@@ -39,12 +45,11 @@ export default function Feed({}) {
                 </div>
               </div>
               <div className="post__media">
-                <img onClick={openModal} src={post.media} alt="image de saucisse postée" />
+                <img onClick={(e) => openModal(post.id)} src={post.media} alt="image de saucisse postée" />
                 <PostDetail
-                  media={post.media}
-                  postId={post.id}
+                  post_id={postId}
                   modalIsOpen={modalIsOpen}
-                  setIsOpen={setIsOpen}
+                  closeModal={closeModal}
                 />
               </div>
               <div className="post__buttons">
