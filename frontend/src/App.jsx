@@ -16,7 +16,9 @@ import AuthChecker from "./services/AuthChecker";
 
 function App() {
   const [auth, setAuth] = useState(false);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(localStorage.avatar
+
+  );
 
   return (
     <AuthContext.Provider
@@ -62,6 +64,17 @@ function App() {
           />
           <Route
             path="/users/:id"
+            element={
+              <AuthChecker>
+                <NavbarTop />
+                <UserProfile />
+                <PostsGrid />
+                <NavbarBottom />
+              </AuthChecker>
+            }
+          />
+          <Route 
+            path="/test"
             element={
               <AuthChecker>
                 <NavbarTop />
