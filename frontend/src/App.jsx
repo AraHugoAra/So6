@@ -25,53 +25,38 @@ function App() {
         setIsAuthenticated: setAuth,
       }}
     >
+
       <UserContext.Provider
         value={{
           user: user,
           setUser: setUser,
         }}
       >
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <AuthChecker>
-                <NavbarTop />
-                <Landing />
-                <NavbarBottom />
-              </AuthChecker>
-            }
-          />
-          <Route
-            path="/signup"
-            element={
-              <>
-                <Signup />
-                <Footer />
-              </>
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <>
-                <Login />
-                <Footer />
-              </>
-            }
-          />
-          <Route
-            path="/users/:id"
-            element={
-              <AuthChecker>
-                <NavbarTop />
-                <UserProfile />
-                <PostsGrid />
-                <NavbarBottom />
-              </AuthChecker>
-            }
-          />
-        </Routes>
+      <Routes>
+        <Route
+          exact path="/"
+          element={
+            <AuthChecker>
+              <NavbarTop />
+              <Landing />
+              <NavbarBottom />
+            </AuthChecker>
+          }
+        />
+        <Route exact path="/signup" element={<Signup />}/>
+        <Route exact path="/login" element={<Login />}/>
+        <Route
+          exact path="/users/:id"
+          element={
+            <AuthChecker>
+              <NavbarTop />
+              <UserProfile />
+              <PostsGrid />
+              <NavbarBottom />
+            </AuthChecker>
+          }
+        />
+      </Routes>
       </UserContext.Provider>
     </AuthContext.Provider>
   );
