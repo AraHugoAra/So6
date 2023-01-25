@@ -1,9 +1,17 @@
+import { useContext, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import logo from '../assets/icons/So6_logo_light.svg'
+import { AuthContext } from '../context/AuthContext'
+import useFetch from '../hooks/useFetch'
 
 
 export default function Login() {
     const navigate = useNavigate()
+    const { data, error, loading } = useFetch('api/auth', null, [])
+
+    useEffect(() => {
+        data?.status === 200 && navigate('/')
+    }, [data])
 
     async function postFetch(e, body) {
         try {
@@ -37,6 +45,7 @@ export default function Login() {
     }
 
     return(
+        !loading && !error &&
         <div className="container login">
             <div className="login__logo">
                 <img src={logo} alt="so6-logo" />

@@ -17,13 +17,13 @@ export default function useFetch(endpoint, params = {}, dependencies = null) {
         const fetchData = async () => {
             setLoading(true);
             try {
-            const response = await fetch(`${import.meta.env.VITE_BASE_URL}/${endpoint}`, fetchParams);
-            const json = await response.json();
-            setData(json);
-            setLoading(false);
+                const response = await fetch(`${import.meta.env.VITE_BASE_URL}/${endpoint}`, fetchParams);
+                const json = await response.json();
+                setData(json);
+                setLoading(false);
             } catch (error) {
-            setError(error);
-            setLoading(false);
+                setError(error);
+                setLoading(false);
             }
         };
         fetchData();

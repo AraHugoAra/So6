@@ -1,8 +1,15 @@
 import logo from '../assets/icons/So6_logo_light.svg'
 import { Link, useNavigate } from 'react-router-dom'
+import useFetch from '../hooks/useFetch'
+import { useEffect } from 'react'
 
 export default function Signup() {
     const navigate = useNavigate()
+    const { data, error, loading } = useFetch('api/auth', null, [])
+
+    useEffect(() => {
+        data?.status === 200 && navigate('/')
+    }, [data])
 
     async function postFetch(body) {
         await fetch(`${import.meta.env.VITE_BASE_URL}/users/create`, {
@@ -32,6 +39,7 @@ export default function Signup() {
     }
 
     return(
+        !loading && !error &&
         <div className="container signup">
             <div className="signup__logo">
                 <img src={logo} alt="so6-logo" />
