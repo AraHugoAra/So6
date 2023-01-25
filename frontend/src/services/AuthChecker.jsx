@@ -10,19 +10,24 @@ export default function AuthChecker({ children }) {
     useEffect(() => {
         setLoading(true)
         async function fetchAuth() {
-            const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/auth`, {
-                method: 'GET',
-                credentials: 'include',
-                headers: { "Content-Type": "application/json" },
-            })
-            if(response.status === 200) {
-                setIsAuthenticated(true)
-                setLoading(false)
-            }
-            else {
-                setIsAuthenticated(false)
-                navigate('/login')
-                setLoading(false)
+            try {
+                const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/auth`, {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: { "Content-Type": "application/json" },
+                })
+                const json = await response.json()
+                if(json.status === 200) {
+                    setIsAuthenticated(true)
+                    setLoading(false)
+                }
+                else {
+                    setIsAuthenticated(false)
+                    navigate('/login')
+                    setLoading(false)
+                }
+            } catch (error) {
+                console.log('AuthChecker error: ', error)
             }
         }
         fetchAuth()

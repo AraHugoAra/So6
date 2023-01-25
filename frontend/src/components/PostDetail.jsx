@@ -120,7 +120,7 @@ export default function PostDetail({ media, postId, modalIsOpen, setIsOpen }) {
                                 />
                             </Link>
                             <Link className="post__link" to={`/users/${comment.user_id}`}>
-                                <p classNa me="commentDetails__info--nickname">{comment.nickname}</p>
+                                <p className="commentDetails__info--nickname">{comment.nickname}</p>
                             </Link>
                           </div>
                           <div className="commentDetails__body">

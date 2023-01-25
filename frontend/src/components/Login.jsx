@@ -1,8 +1,8 @@
-import { useContext, useEffect } from 'react'
+import { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import logo from '../assets/icons/So6_logo_light.svg'
-import { AuthContext } from '../context/AuthContext'
 import useFetch from '../hooks/useFetch'
+import Footer from './Footer'
 
 
 export default function Login() {
@@ -46,19 +46,22 @@ export default function Login() {
 
     return(
         !loading && !error &&
-        <div className="container login">
-            <div className="login__logo">
-                <img src={logo} alt="so6-logo" />
-                <p className='login__flavour-text' >Inscrivez-vous pour voir les photos et vidéos de vos amis.</p>
+        <>
+            <div className="container login">
+                <div className="login__logo">
+                    <img src={logo} alt="so6-logo" />
+                    <p className='login__flavour-text' >Inscrivez-vous pour voir les photos et vidéos de vos amis.</p>
+                </div>
+                <form onSubmit={(e) => handleSubmit(e)}>
+                    <label htmlFor="email">Email:</label>
+                    <input type="email" id="email"/>
+                    <label htmlFor="password">Password:</label>
+                    <input type="password" id="password"/>
+                    <button type="submit">Se connecter</button>
+                </form>
+                <Link className='form__link' to="/signup">Inscrivez-vous.</Link>
             </div>
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <label htmlFor="email">Email:</label>
-                <input type="email" id="email"/>
-                <label htmlFor="password">Password:</label>
-                <input type="password" id="password"/>
-                <button type="submit">Se connecter</button>
-            </form>
-            <Link className='form__link' to="/signup">Inscrivez-vous.</Link>
-        </div>
+            <Footer />
+        </>
     )
 }
