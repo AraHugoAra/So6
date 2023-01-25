@@ -56,8 +56,8 @@ export default function Feed({}) {
                 <div className="post__buttons__like">
                   <Like target_id={post.id} target_type={0} />
                 </div>
-                <button>
-                  <img src={Comment} alt='comment-icon'/>
+                <button onClick={(e) => openModal(post.id)}>
+                  <img src={Comment} alt="Ajouter du sel aux commentaires"/>
                 </button>
               </div>
               <div className="post__comments">

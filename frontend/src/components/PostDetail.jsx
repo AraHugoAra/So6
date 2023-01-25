@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import Modal from "react-modal";
 
 import Like from "./Like";
-import Comment from "./../assets/icons/salt-light-mode.svg";
+import Comments from "./Comments";
+import commentIMG from "./../assets/icons/salt-light-mode.svg";
 
 const customStyles = {
   content: {
@@ -19,7 +20,6 @@ Modal.setAppElement("#root");
 
 export default function PostDetail({ post_id, modalIsOpen, closeModal }) {
   const [post, setPost] = useState(null);
-  const [comments, setComments] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -36,26 +36,10 @@ export default function PostDetail({ post_id, modalIsOpen, closeModal }) {
     }
   }
 
-  async function fetchComments(url) {
-    setLoading(true);
-    try {
-      const response = await fetch(url);
-      const json = await response.json();
-      setComments(json.comments);
-      setLoading(false);
-    } catch (error) {
-      setError(error);
-      setLoading(false);
-    }
-  }
 
   async function fetchModal() {
     const urlPost = import.meta.env.VITE_BASE_URL + "/posts/" + post_id;
     await fetchPost(urlPost);
-
-    const urlComments =
-      import.meta.env.VITE_BASE_URL + "/posts/" + post_id + "/comments";
-    await fetchComments(urlComments);
   }
 
   function afterOpenModal() {
@@ -101,46 +85,9 @@ export default function PostDetail({ post_id, modalIsOpen, closeModal }) {
                 <div>
                   <Like target_id={post.id} target_type={0} />
                 </div>
-                <img src={Comment} />
+                <img src={commentIMG} />
               </div>
-              <div className="post__comments">
-                {!loading &&
-                  !error &&
-                  comments &&
-                  comments.map((comment) => (
-                    <div className="commentDetails" key={comment.id}>
-                      <div className="commentDetails__info">
-                        <div className="commentDetails__info--user">
-                          <Link
-                            className="post__link"
-                            to={`/users/${post.user_id}`}
-                          >
-                            <img
-                              className="avatar"
-                              src={
-                                comment.avatar || "./../../public/favicon.ico"
-                              }
-                            />
-                          </Link>
-                          <Link
-                            className="post__link"
-                            to={`/users/${comment.user_id}`}
-                          >
-                            <p className="commentDetails__info--nickname">
-                              {comment.nickname}
-                            </p>
-                          </Link>
-                        </div>
-                        <div className="commentDetails__body">
-                          <p>{comment.body}</p>
-                        </div>
-                      </div>
-                      <div className="commentDetails__like">
-                        <Like target_id={comment.id} target_type={1} />
-                      </div>
-                    </div>
-                  ))}
-              </div>
+              <Comments post_id={post_id}/>
             </div>
           )}
         </div>
