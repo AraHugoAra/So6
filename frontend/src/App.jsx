@@ -10,11 +10,14 @@ import UserProfile from './components/UserProfile'
 import PostsGrid from './components/PostsGrid'
 import NavbarBottom from './components/NavbarBottom'
 import { AuthContext } from "./context/AuthContext";
+import { UserContext } from './context/UserContext'
 import { useState } from "react";
 import AuthChecker from "./services/AuthChecker";
 
 function App() {
   const [auth, setAuth] = useState(false);
+  const [user, setUser] = useState(null);
+
   return (
     <AuthContext.Provider
       value={{
@@ -22,6 +25,13 @@ function App() {
         setIsAuthenticated: setAuth,
       }}
     >
+
+      <UserContext.Provider
+        value={{
+          user: user,
+          setUser: setUser,
+        }}
+      >
       <Routes>
         <Route
           exact path="/"
@@ -47,6 +57,7 @@ function App() {
           }
         />
       </Routes>
+      </UserContext.Provider>
     </AuthContext.Provider>
   );
 }

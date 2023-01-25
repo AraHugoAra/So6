@@ -17,7 +17,7 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-export default function PostDetail({ media, postId, modalIsOpen, setIsOpen }) {
+export default function PostDetail({ post_id, modalIsOpen, closeModal }) {
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState(null);
   const [error, setError] = useState(null);
@@ -50,11 +50,11 @@ export default function PostDetail({ media, postId, modalIsOpen, setIsOpen }) {
   }
 
   async function fetchModal() {
-    const urlPost = import.meta.env.VITE_BASE_URL + "/posts/" + postId;
+    const urlPost = import.meta.env.VITE_BASE_URL + "/posts/" + post_id;
     await fetchPost(urlPost);
 
     const urlComments =
-      import.meta.env.VITE_BASE_URL + "/posts/" + postId + "/comments";
+      import.meta.env.VITE_BASE_URL + "/posts/" + post_id + "/comments";
     await fetchComments(urlComments);
   }
 
@@ -62,9 +62,7 @@ export default function PostDetail({ media, postId, modalIsOpen, setIsOpen }) {
     fetchModal();
   }
 
-  function closeModal() {
-    setIsOpen(false);
-  }
+  
 
   return (
     <div>
@@ -73,7 +71,6 @@ export default function PostDetail({ media, postId, modalIsOpen, setIsOpen }) {
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="Example Modal"
       >
         <div className="modal__post">
           <button onClick={closeModal}>close</button>
@@ -88,10 +85,11 @@ export default function PostDetail({ media, postId, modalIsOpen, setIsOpen }) {
                 </Link>
                 <div className="post__user__text">
                   <Link className="post__link" to={`/users/${post.user_id}`}>
-                    <p className="post__user__text__nickname">{post.nickname}</p>
+                    <p className="post__user__text__nickname">
+                      {post.nickname}
+                    </p>
                   </Link>
-                    <p className="post__user__text__body body">{post.body}</p>
-                    
+                  <p className="post__user__text__body body">{post.body}</p>
                 </div>
               </div>
               <img
@@ -105,34 +103,44 @@ export default function PostDetail({ media, postId, modalIsOpen, setIsOpen }) {
                 </div>
                 <img src={Comment} />
               </div>
-                <div className="post__comments">
-                  {!loading &&
-                    !error &&
-                    comments &&
-                    comments.map((comment) => (
-                      <div className="commentDetails" key={comment.id}>
-                        <div className="commentDetails__info">
-                          <div className="commentDetails__info--user" >
-                            <Link className="post__link" to={`/users/${post.user_id}`}>
-                                <img
-                                className="avatar"
-                                src={comment.avatar || "./../../public/favicon.ico"}
-                                />
-                            </Link>
-                            <Link className="post__link" to={`/users/${comment.user_id}`}>
-                                <p className="commentDetails__info--nickname">{comment.nickname}</p>
-                            </Link>
-                          </div>
-                          <div className="commentDetails__body">
-                            <p>{comment.body}</p>
-                          </div>
+              <div className="post__comments">
+                {!loading &&
+                  !error &&
+                  comments &&
+                  comments.map((comment) => (
+                    <div className="commentDetails" key={comment.id}>
+                      <div className="commentDetails__info">
+                        <div className="commentDetails__info--user">
+                          <Link
+                            className="post__link"
+                            to={`/users/${post.user_id}`}
+                          >
+                            <img
+                              className="avatar"
+                              src={
+                                comment.avatar || "./../../public/favicon.ico"
+                              }
+                            />
+                          </Link>
+                          <Link
+                            className="post__link"
+                            to={`/users/${comment.user_id}`}
+                          >
+                            <p className="commentDetails__info--nickname">
+                              {comment.nickname}
+                            </p>
+                          </Link>
                         </div>
-                        <div className="commentDetails__like">
-                          <Like target_id={comment.id} target_type={1} />
+                        <div className="commentDetails__body">
+                          <p>{comment.body}</p>
                         </div>
                       </div>
-                    ))}
-                </div>
+                      <div className="commentDetails__like">
+                        <Like target_id={comment.id} target_type={1} />
+                      </div>
+                    </div>
+                  ))}
+              </div>
             </div>
           )}
         </div>
