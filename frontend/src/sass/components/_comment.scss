@@ -12,3 +12,26 @@
             }
         }
     }
+
+.comments{
+    &__add{
+        // margin: 1em;
+        form{
+            margin: 0;
+            padding: 0;
+            max-width: 100%;
+            flex-direction: row;
+            input {
+                width: auto;
+                padding: 0px 10px;
+                font-size: 1.5rem;
+                flex-grow: 1;
+            }
+            button {
+                margin-top: 0;
+                font-size: 1.5rem;
+                padding: 0px 10px;
+            }
+        }
+    }
+}
