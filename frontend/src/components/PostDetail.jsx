@@ -6,13 +6,13 @@ import Like from "./Like";
 import Comment from "./../assets/icons/salt-light-mode.svg";
 
 const customStyles = {
-  //   content: {
-  //     top: "0%",
-  //     left: "0%",
-  //     right: "0%",
-  //     bottom: "0%",
-  //     backgroundColor: "rgba(0, 0, 0, 0.5)",
-  //   },
+  content: {
+    top: "0%",
+    left: "0%",
+    right: "0%",
+    bottom: "0%",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
 };
 
 Modal.setAppElement("#root");
@@ -22,10 +22,6 @@ export default function PostDetail({ media, postId, modalIsOpen, setIsOpen }) {
   const [comments, setComments] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  function openModal() {
-    setIsOpen(true);
-  }
 
   async function fetchPost(url) {
     setLoading(true);
@@ -72,7 +68,6 @@ export default function PostDetail({ media, postId, modalIsOpen, setIsOpen }) {
 
   return (
     <div>
-      <img onClick={openModal} src={media} alt="image de saucisse postée" />
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
@@ -89,55 +84,55 @@ export default function PostDetail({ media, postId, modalIsOpen, setIsOpen }) {
                   <img
                     className="post__user__avatar avatar"
                     src={post.avatar || "./../../public/favicon.ico"}
-                    alt="avatar"
                   />
                 </Link>
-                <Link className="post__link" to={`/users/${post.user_id}`}>
-                  <div className="post__user__nickname">{post.nickname}</div>
-                </Link>
+                <div className="post__user__text">
+                  <Link className="post__link" to={`/users/${post.user_id}`}>
+                    <p className="post__user__text__nickname">{post.nickname}</p>
+                  </Link>
+                    <p className="post__user__text__body body">{post.body}</p>
+                    
+                </div>
               </div>
-              <div className="post__media">
-                <img src={post.media} alt="image de saucisse postée" />
-              </div>
+              <img
+                className="modal__media"
+                src={post.media}
+                alt="image de saucisse postée"
+              />
               <div className="post__buttons">
                 <div>
                   <Like target_id={post.id} target_type={0} />
                 </div>
                 <img src={Comment} />
               </div>
-              <div className="post__text">
-                <p className="post__text body">{post.body}</p>
                 <div className="post__comments">
                   {!loading &&
                     !error &&
                     comments &&
                     comments.map((comment) => (
-                      <div className="comment" key={comment.id}>
-                        <div className="comment__info">
-                          <div
-                            // Attention double class en attendant de finaliser le style de comment__user
-                            className="comment__user post__user"
-                          >
-                            <img
-                              className="comment__user--avatar avatar"
-                              src={post.avatar || "./../../public/favicon.ico"}
-                              alt="avatar"
-                            />
-                            <p className="comment__user--nickname">
-                              {comment.nickname}:&nbsp;
-                            </p>
+                      <div className="commentDetails" key={comment.id}>
+                        <div className="commentDetails__info">
+                          <div className="commentDetails__info--user" >
+                            <Link className="post__link" to={`/users/${post.user_id}`}>
+                                <img
+                                className="avatar"
+                                src={comment.avatar || "./../../public/favicon.ico"}
+                                />
+                            </Link>
+                            <Link className="post__link" to={`/users/${comment.user_id}`}>
+                                <p classNa me="commentDetails__info--nickname">{comment.nickname}</p>
+                            </Link>
                           </div>
-                          <div className="comment__body">
+                          <div className="commentDetails__body">
                             <p>{comment.body}</p>
                           </div>
                         </div>
-                        <div className="comment__like">
+                        <div className="commentDetails__like">
                           <Like target_id={comment.id} target_type={1} />
                         </div>
                       </div>
                     ))}
                 </div>
-              </div>
             </div>
           )}
         </div>

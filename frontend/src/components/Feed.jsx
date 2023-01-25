@@ -12,6 +12,10 @@ export default function Feed({}) {
 
   const { data, loading, error } = useFetch("posts", {}, [modalIsOpen]);
 
+  function openModal() {
+    setIsOpen(true);
+  }
+
     return (
       <div className="feed">
         {!loading &&
@@ -35,7 +39,8 @@ export default function Feed({}) {
                 </div>
               </div>
               <div className="post__media">
-                  <PostDetail
+                <img onClick={openModal} src={post.media} alt="image de saucisse postée" />
+                <PostDetail
                   media={post.media}
                   postId={post.id}
                   modalIsOpen={modalIsOpen}

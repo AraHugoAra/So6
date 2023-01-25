@@ -23,7 +23,7 @@ function postsRoutes(app, db)  {
         const post_id = req.params.post_id
         try {
             const post = await db.query(
-                "SELECT posts.id,posts.timestamp,posts.media,posts.body,posts.vegan,users.nickname, users.avatar "+
+                "SELECT posts.id,posts.timestamp,posts.media,posts.body,posts.user_id,posts.vegan,users.nickname, users.avatar "+
                 "FROM posts " +
                 "INNER JOIN users ON users.id = posts.user_id ",
                 [post_id]

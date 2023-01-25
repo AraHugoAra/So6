@@ -33,7 +33,7 @@ function commentsRoutes(app, db)  {
         const postId = req.params.id
         try{
             const comments = await db.query(
-                'SELECT comments.body, users.nickname, comments.id '+
+                'SELECT comments.body, users.nickname, comments.user_id, comments.id '+
                 'FROM comments ' +
                 'JOIN users ON users.id = comments.user_id '+
                 'WHERE comments.post_id = ? '+
