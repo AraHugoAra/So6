@@ -1,9 +1,13 @@
+import { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import logo from '../assets/icons/So6_logo_light.svg'
+import { UserContext } from '../context/UserContext'
 
 
 export default function Login() {
     const navigate = useNavigate()
+    const {user, setUser} = useContext(UserContext)
+    
 
     async function postFetch(e, body) {
         try {
@@ -15,6 +19,11 @@ export default function Login() {
             })
             const json = await response.json()
             if (json.status === 200) {
+                setUser({
+                    avatar: json.session.user[0].avatar,
+                    nickname: json.session.user[0].nickname,
+                })
+                // console.log(json.session.user[0].nickname);
                 e.target.reset()
                 navigate('/')
             }
