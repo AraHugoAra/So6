@@ -117,7 +117,8 @@ export default function Like({target_id, target_type}) {
                 <img src={like} alt="J'aime"/> :
                 <img src={dislike} alt="Je n'aime pas encore"/>    
             }
-            <p>{numberLike} J'aime{numberLike > 1 && "s"}</p>
+            {target_type===0 &&<p>{numberLike} J'aime{numberLike > 1 && "s"}</p>}
+            
         </button>
     )
 }

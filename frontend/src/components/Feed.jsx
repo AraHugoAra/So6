@@ -60,11 +60,11 @@ export default function Feed({}) {
                   <img src={Comment} alt="Ajouter du sel aux commentaires"/>
                 </button>
               </div>
-              <div className="post__comments">
-                <p className="post__comments comments">
+              <button onClick={(e) => openModal(post.id)}>
+                <p className="comments">
                   Voir les commentaires...
                 </p>
-              </div>
+              </button>
             </div>
           ))}
       </div>

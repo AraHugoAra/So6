@@ -53,7 +53,7 @@ export default function Comments({ post_id }) {
       }),
     };
     fetchAddcomment(url, fetchParams);
-    e.target.reset()
+    e.target.reset();
   }
 
   useEffect(() => {
@@ -96,7 +96,7 @@ export default function Comments({ post_id }) {
       </div>
 
       <div className="comments__add">
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form id="addcommentform" onSubmit={(e) => handleSubmit(e)}>
           <input
             type="text"
             id="addcomment"

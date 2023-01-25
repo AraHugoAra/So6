@@ -5,6 +5,7 @@ import Modal from "react-modal";
 import Like from "./Like";
 import Comments from "./Comments";
 import commentIMG from "./../assets/icons/salt-light-mode.svg";
+import close from "./../assets/icons/close.png";
 
 const customStyles = {
   content: {
@@ -36,7 +37,6 @@ export default function PostDetail({ post_id, modalIsOpen, closeModal }) {
     }
   }
 
-
   async function fetchModal() {
     const urlPost = import.meta.env.VITE_BASE_URL + "/posts/" + post_id;
     await fetchPost(urlPost);
@@ -45,8 +45,6 @@ export default function PostDetail({ post_id, modalIsOpen, closeModal }) {
   function afterOpenModal() {
     fetchModal();
   }
-
-  
 
   return (
     <div>
@@ -57,7 +55,9 @@ export default function PostDetail({ post_id, modalIsOpen, closeModal }) {
         style={customStyles}
       >
         <div className="modal__post">
-          <button onClick={closeModal}>close</button>
+          <button className="modal__post--close" onClick={closeModal}>
+            <img src={close} alt="fermer" />
+          </button>
           {!loading && !error && post && (
             <div className="post">
               <div className="post__user">
@@ -85,9 +85,11 @@ export default function PostDetail({ post_id, modalIsOpen, closeModal }) {
                 <div>
                   <Like target_id={post.id} target_type={0} />
                 </div>
-                <img src={commentIMG} />
+                <label form="addcommentform" htmlFor="addcomment">
+                  <img src={commentIMG} />
+                </label>
               </div>
-              <Comments post_id={post_id}/>
+              <Comments post_id={post_id} />
             </div>
           )}
         </div>
