@@ -18,6 +18,10 @@
   background: $colour-white;
   padding: 4px 0;
 
+  a {
+    display: flex;
+  }
+
   &__container {
     display: flex;
     align-items: center;
