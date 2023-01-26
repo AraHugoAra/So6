@@ -31,7 +31,6 @@ export default function Login() {
                 const userNickname = localStorage.getItem('nickname')
                 localStorage.setItem('id', json.session.user[0].id)
                 const userId = localStorage.getItem('id')
-                
                 // useEffect
                 setUser({
                     avatar: userAvatar ? userAvatar : "",
@@ -65,7 +64,7 @@ export default function Login() {
             <div className="container login">
                 <div className="login__logo">
                     <img src={logo} alt="so6-logo" />
-                    <p className='login__flavour-text' >Inscrivez-vous pour voir les photos et vidéos de vos amis.</p>
+                    <p className='login__flavour-text' >Connectez-vous pour voir les photos et vidéos de vos amis.</p>
                 </div>
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <label htmlFor="email">Email:</label>

@@ -18,6 +18,7 @@ export default function Signup() {
     async function postFetch(body) {
         await fetch(`${import.meta.env.VITE_BASE_URL}/users/create`, {
             method: 'POST',
+            credentials: 'include',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(body),
         })
@@ -33,9 +34,11 @@ export default function Signup() {
             avatar: imageUploaded,
         }
         if(body.password !== e.target.elements.passwordConfirm.value) {
+            console.log('if')
             alert('Vérifiez votre mot de passe.')
         }
         else {
+            console.log('else')
             postFetch(body)
             e.target.reset()
             navigate('/login')
@@ -59,6 +62,7 @@ export default function Signup() {
                             description={"Votre avatar:"} 
                             imageUploaded={imageUploaded} 
                             setImageUploaded={setImageUploaded}
+                            style="medium"
                         />
                         <label htmlFor="email">Email:</label>
                         <input type="email" id="email" required/>
@@ -68,7 +72,7 @@ export default function Signup() {
                         <input type="text" id="nickname" required/>
                         <label htmlFor="password">Mot de passe:</label>
                         <input type="password" id="password" required/>
-                        <label htmlFor="password-confirm">Confirmer mot de passe:</label>
+                        <label htmlFor="passwordConfirm">Confirmer mot de passe:</label>
                         <input type="password" id="passwordConfirm" required/>
                         <button type="submit">S'inscrire</button>
                     </form>

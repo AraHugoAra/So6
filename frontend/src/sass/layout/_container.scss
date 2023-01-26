@@ -7,8 +7,9 @@
         max-width: $max-width;
         height: auto;
     }
-
     &--post{
+        max-width: $max-width;
+        margin: 0 auto;
         text-align: left;
         padding: 0;
     }

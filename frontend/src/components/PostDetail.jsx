@@ -25,6 +25,7 @@ export default function PostDetail({ post_id, modalIsOpen, closeModal }) {
   const [loading, setLoading] = useState(true);
 
   async function fetchPost(url) {
+    if(modalIsOpen) {
     setLoading(true);
     try {
       const response = await fetch(url);
@@ -36,6 +37,7 @@ export default function PostDetail({ post_id, modalIsOpen, closeModal }) {
       setLoading(false);
     }
   }
+}
 
   async function fetchModal() {
     const urlPost = import.meta.env.VITE_BASE_URL + "/posts/" + post_id;
@@ -48,6 +50,7 @@ export default function PostDetail({ post_id, modalIsOpen, closeModal }) {
 
   return (
     <div>
+      {modalIsOpen &&
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
@@ -95,7 +98,7 @@ export default function PostDetail({ post_id, modalIsOpen, closeModal }) {
             </div>
           )}
         </div>
-      </Modal>
+      </Modal>}
     </div>
   );
 }

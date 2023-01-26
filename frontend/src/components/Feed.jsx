@@ -6,6 +6,7 @@ import Like from "./Like";
 import PostDetail from "./PostDetail";
 
 import Comment from "./../assets/icons/salt-light-mode.svg";
+import AuthChecker from "../services/AuthChecker";
 
 export default function Feed({}) {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -23,7 +24,7 @@ export default function Feed({}) {
   }
 
     return (
-      <div className="feed container">
+      <div className="feed container--post">
         {!loading &&
           !error &&
           data.posts &&
@@ -46,11 +47,13 @@ export default function Feed({}) {
               </div>
               <div className="post__media">
                 <img onClick={(e) => openModal(post.id)} src={post.media} alt="image de saucisse postée" />
-                <PostDetail
-                  post_id={postId}
-                  modalIsOpen={modalIsOpen}
-                  closeModal={closeModal}
-                />
+                <AuthChecker>
+                  <PostDetail
+                    post_id={postId}
+                    modalIsOpen={modalIsOpen}
+                    closeModal={closeModal}
+                  />
+                </AuthChecker>
               </div>
               <div className="post__buttons">
                 <div className="post__buttons__like">

@@ -1,10 +1,8 @@
 import { Route, Routes } from 'react-router'
 import Signup from './components/Signup'
-import Footer from './components/Footer'
 import Landing from './components/Landing'
 import './sass/main.scss'
 import Login from './components/Login'
-import Logout from './components/Logout'
 import NavbarTop from './components/NavbarTop'
 import UserProfile from './components/UserProfile'
 import PostsGrid from './components/PostsGrid'
@@ -13,6 +11,7 @@ import { AuthContext } from "./context/AuthContext";
 import { UserContext } from './context/UserContext'
 import { useEffect, useState } from "react";
 import AuthChecker from "./services/AuthChecker";
+import AddPost from "./components/AddPost"
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -66,6 +65,16 @@ function App() {
                 <UserProfile />
                 <PostsGrid />
                 <NavbarBottom />
+              </AuthChecker>
+            }
+          />
+          <Route
+            exact path = "/posts/add"
+            element = {
+              <AuthChecker>
+                <NavbarTop/>
+                <AddPost />
+                <NavbarBottom/>
               </AuthChecker>
             }
           />
