@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import Modal from "react-modal";
 
 import Like from "./Like";
-import Comment from "./../assets/icons/salt-light-mode.svg";
+import Comments from "./Comments";
+import commentIMG from "./../assets/icons/salt-light-mode.svg";
+import close from "./../assets/icons/close.png";
 
 const customStyles = {
   content: {
@@ -17,9 +19,8 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-export default function PostDetail({ media, postId, modalIsOpen, setIsOpen }) {
+export default function PostDetail({ post_id, modalIsOpen, closeModal }) {
   const [post, setPost] = useState(null);
-  const [comments, setComments] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -36,34 +37,13 @@ export default function PostDetail({ media, postId, modalIsOpen, setIsOpen }) {
     }
   }
 
-  async function fetchComments(url) {
-    setLoading(true);
-    try {
-      const response = await fetch(url);
-      const json = await response.json();
-      setComments(json.comments);
-      setLoading(false);
-    } catch (error) {
-      setError(error);
-      setLoading(false);
-    }
-  }
-
   async function fetchModal() {
-    const urlPost = import.meta.env.VITE_BASE_URL + "/posts/" + postId;
+    const urlPost = import.meta.env.VITE_BASE_URL + "/posts/" + post_id;
     await fetchPost(urlPost);
-
-    const urlComments =
-      import.meta.env.VITE_BASE_URL + "/posts/" + postId + "/comments";
-    await fetchComments(urlComments);
   }
 
   function afterOpenModal() {
     fetchModal();
-  }
-
-  function closeModal() {
-    setIsOpen(false);
   }
 
   return (
@@ -73,26 +53,30 @@ export default function PostDetail({ media, postId, modalIsOpen, setIsOpen }) {
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="Example Modal"
       >
-        <div className="modal__post">
-          <button onClick={closeModal}>close</button>
+        <div className="modal__post container--post">
           {!loading && !error && post && (
             <div className="post">
-              <div className="post__user">
-                <Link className="post__link" to={`/users/${post.user_id}`}>
-                  <img
-                    className="post__user__avatar avatar"
-                    src={post.avatar || "./../../public/favicon.ico"}
-                  />
-                </Link>
-                <div className="post__user__text">
+              <div className="post__header">
+                <div className="post__user">
                   <Link className="post__link" to={`/users/${post.user_id}`}>
-                    <p className="post__user__text__nickname">{post.nickname}</p>
+                    <img
+                      className="post__user__avatar avatar"
+                      src={post.avatar || "./../../public/favicon.ico"}
+                    />
                   </Link>
+                  <div className="post__user__text">
+                    <Link className="post__link" to={`/users/${post.user_id}`}>
+                      <p className="post__user__text__nickname">
+                        {post.nickname}
+                      </p>
+                    </Link>
                     <p className="post__user__text__body body">{post.body}</p>
-                    
+                  </div>
                 </div>
+                <button className="modal__post--close" onClick={closeModal}>
+                  <img src={close} alt="fermer" />
+                </button>
               </div>
               <img
                 className="modal__media"
@@ -103,36 +87,11 @@ export default function PostDetail({ media, postId, modalIsOpen, setIsOpen }) {
                 <div>
                   <Like target_id={post.id} target_type={0} />
                 </div>
-                <img src={Comment} />
+                <label form="addcommentform" htmlFor="addcomment">
+                  <img src={commentIMG} />
+                </label>
               </div>
-                <div className="post__comments">
-                  {!loading &&
-                    !error &&
-                    comments &&
-                    comments.map((comment) => (
-                      <div className="commentDetails" key={comment.id}>
-                        <div className="commentDetails__info">
-                          <div className="commentDetails__info--user" >
-                            <Link className="post__link" to={`/users/${post.user_id}`}>
-                                <img
-                                className="avatar"
-                                src={comment.avatar || "./../../public/favicon.ico"}
-                                />
-                            </Link>
-                            <Link className="post__link" to={`/users/${comment.user_id}`}>
-                                <p classNa me="commentDetails__info--nickname">{comment.nickname}</p>
-                            </Link>
-                          </div>
-                          <div className="commentDetails__body">
-                            <p>{comment.body}</p>
-                          </div>
-                        </div>
-                        <div className="commentDetails__like">
-                          <Like target_id={comment.id} target_type={1} />
-                        </div>
-                      </div>
-                    ))}
-                </div>
+              <Comments post_id={post_id} />
             </div>
           )}
         </div>

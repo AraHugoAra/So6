@@ -1,7 +1,7 @@
 .commentDetails{
         display: flex;
         justify-content: space-between;
-        
+        align-items: center;
         &__info{
             display: flex;
             font-size: small;
@@ -12,3 +12,27 @@
             }
         }
     }
+
+.comments{
+    padding: 0 0.5em;
+    &__add{
+        padding: 0.5em;
+        form{
+            margin: 0em;
+            padding: 0;
+            max-width: 100%;
+            flex-direction: row;
+            input {
+                width: auto;
+                padding: 0px 10px;
+                font-size: 1.4rem;
+                flex-grow: 1;
+            }
+            button {
+                margin-top: 0;
+                font-size: 1.4rem;
+                padding: 0px 10px;
+            }
+        }
+    }
+}

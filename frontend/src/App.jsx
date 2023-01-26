@@ -27,6 +27,7 @@ function App() {
         setIsAuthenticated: setAuth,
       }}
     >
+
       <UserContext.Provider
         value={{
           user: user,
@@ -35,7 +36,7 @@ function App() {
       >
         <Routes>
           <Route
-            path="/"
+            exact path="/"
             element={
               <AuthChecker>
                 <NavbarTop />
@@ -44,26 +45,10 @@ function App() {
               </AuthChecker>
             }
           />
+          <Route exact path="/signup" element={<Signup />}/>
+          <Route exact path="/login" element={<Login />}/>
           <Route
-            path="/signup"
-            element={
-              <>
-                <Signup />
-                <Footer />
-              </>
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <>
-                <Login />
-                <Footer />
-              </>
-            }
-          />
-          <Route
-            path="/users/:id"
+            exact path="/users/:id"
             element={
               <AuthChecker>
                 <NavbarTop />
