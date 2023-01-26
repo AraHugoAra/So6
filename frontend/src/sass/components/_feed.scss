@@ -1,9 +1,8 @@
-.feed{
-    max-width: $max-width;
-    margin: auto;
-}
-
 .post {
+    &__header{
+        display: flex;
+        justify-content: space-between;
+    }
     &__link {
         color: $colour-accent;
         &:visited {

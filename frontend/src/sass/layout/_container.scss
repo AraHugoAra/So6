@@ -3,4 +3,13 @@
     padding: 2rem 0;
     max-width: $max-width;
     text-align: center;
+    img{
+        max-width: $max-width;
+        height: auto;
+    }
+
+    &--post{
+        text-align: left;
+        padding: 0;
+    }
 }
