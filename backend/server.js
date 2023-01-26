@@ -1,13 +1,13 @@
 import express, { json, urlencoded } from 'express'
-import dotenv from 'dotenv'
-import cors from "cors"
 import { createConnection } from 'promise-mysql'
-import session from 'express-session'
 import usersRoutes from './routes/usersRoutes.js'
 import commentsRoutes from './routes/commentsRoutes.js'
 import postsRoutes from './routes/postsRoutes.js'
 import likesRoutes from './routes/likesRoutes.js'
-
+import cookieSetter from './services/cookieSetter.js'
+import sessionManager from './services/sessionManager.js'
+import cors from "cors"
+import dotenv from 'dotenv'
 dotenv.config()
 
 const port = process.env.PORT
@@ -16,14 +16,6 @@ const app = express()
 app.use(cors({ credentials: true, origin: true }));
 app.use(json())
 app.use(urlencoded({extended: false}))
-app.use(session({
-    secret : process.env.SECRET,
-    resave : true,
-    saveUninitialized : true,
-    cookie: {
-        maxAge: 3600000
-    }
-  }));
 
 const connectionOptions = {
     host: process.env.DB_HOST,
@@ -33,6 +25,10 @@ const connectionOptions = {
     port: process.env.DB_PORT
 }
 
+sessionManager(app)//Config express-session
+cookieSetter(app) //SameSite: Lax
+
+//mysql-promise
 createConnection(connectionOptions)
     .then(async (db) => {
         app.get('/', async (req, res) => {
