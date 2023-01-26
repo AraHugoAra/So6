@@ -10,7 +10,7 @@ function postsRoutes(app, db)  {
                 "INNER JOIN users ON users.id = posts.user_id "+
                 "LEFT JOIN likes ON posts.id = likes.target_id AND likes.target_type=0 "+
                 "GROUP BY posts.id "+
-                "ORDER BY posts.timestamp")
+                "ORDER BY posts.timestamp DESC")
             res.json({status: 200, posts})
         }
         catch(error) {
