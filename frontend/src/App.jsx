@@ -11,14 +11,14 @@ import PostsGrid from './components/PostsGrid'
 import NavbarBottom from './components/NavbarBottom'
 import { AuthContext } from "./context/AuthContext";
 import { UserContext } from './context/UserContext'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AuthChecker from "./services/AuthChecker";
 
 function App() {
   const [auth, setAuth] = useState(false);
-  const [user, setUser] = useState(localStorage.avatar
-
-  );
+  const userData = localStorage.getItem('userData');
+  const [user, setUser] = useState(userData ? JSON.parse(userData) : null );
+  useEffect(() => localStorage.setItem('userData', JSON.stringify(user)), [user])
 
   return (
     <AuthContext.Provider

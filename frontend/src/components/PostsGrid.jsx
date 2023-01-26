@@ -30,7 +30,6 @@ const PostsGrid = () => {
     },[posts])
 
     const userNickname = localStorage.getItem('nickname')
-    // console.log(userNickname);
 
     // user and user's posts
     return (

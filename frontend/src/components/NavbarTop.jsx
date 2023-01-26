@@ -15,13 +15,12 @@ const NavbarTop = () => {
             <img src={Logo} alt="brand-icon" />
           </a>
           <div className="navbar__icons">
-            <a className="navbar__logo" href="/">
+            {/* <a className="navbar__logo" href="/">
               <img src={Like} alt="like-icon" />
-            </a>
-            {/* //chat with a friend  */}
-            <a className="navbar__logo" href="/">
+            </a> */}
+            {/* <a className="navbar__logo" href="/">
               <img src={Chat} alt="chat-icon" />
-            </a>
+            </a> */}
             <a className="navbar__logo" href="/">
               <img src={Add} alt="add-icon" />
             </a>

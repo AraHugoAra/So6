@@ -25,20 +25,19 @@ export default function Login() {
             })
             const json = await response.json()
             if (json.status === 200) {
-
                 localStorage.setItem('avatar', json.session.user[0].avatar)
                 const userAvatar = localStorage.getItem('avatar')
                 localStorage.setItem('nickname', json.session.user[0].nickname)
                 const userNickname = localStorage.getItem('nickname')
+                localStorage.setItem('id', json.session.user[0].id)
+                const userId = localStorage.getItem('id')
                 
                 // useEffect
                 setUser({
                     avatar: userAvatar ? userAvatar : "",
                     nickname: userNickname ? userNickname : "",
+                    id: userId ? userId : "",
                 });
-                console.log("avatar dans user")
-                console.log(user?.avatar);
-                // console.log(json.session.user[0].nickname);
                 e.target.reset()
                 navigate('/')
             }
