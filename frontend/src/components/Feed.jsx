@@ -23,7 +23,7 @@ export default function Feed({}) {
   }
 
     return (
-      <div className="feed container">
+      <div className="feed container--post">
         {!loading &&
           !error &&
           data.posts &&
