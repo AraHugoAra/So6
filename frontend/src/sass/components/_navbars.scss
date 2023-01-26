@@ -2,12 +2,25 @@
   top: 0;
   width: 100vw;
   position: fixed;
-}  
+  border-bottom: 1px $colour-navbar-border solid;
+}
 
+.navbar-bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    border-top: 1px $colour-navbar-border solid;
+}
+
+/**  navbar **/
 .navbar {
   justify-content: space-between;
   background: $colour-white;
-  padding-top: 12px;
+  padding: 4px 0;
+
+  a {
+    display: flex;
+  }
 
   &__container {
     display: flex;
@@ -19,6 +32,10 @@
     padding: 0 0.5em;
     width: 24px;
   }
+  &__icons {
+    display: flex;
+  }
+
   .navbar-collapse {
     flex-grow: 0;
   } 

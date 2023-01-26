@@ -23,15 +23,22 @@ const PostsGrid = () => {
     useEffect(() => {
         const URL = import.meta.env.VITE_BASE_URL + "/posts"
         fetchPosts(URL)
+        return () => {
+          // needs to be stoped
+        }
+
     },[posts])
+
+    const userNickname = localStorage.getItem('nickname')
 
     // user and user's posts
     return (
       <article className="posts-grid">
         <div className="posts-grid__row-images">
-          {loading === false &&
-            posts !== null &&
+          {(loading === false &&
+            posts !== null) &&
             posts.map((post) => (
+              (post.nickname === userNickname) &&
               <img
                 key={post.id}
                 className="posts-grid__image"
