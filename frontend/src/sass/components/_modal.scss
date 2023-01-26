@@ -13,9 +13,11 @@
             height: auto;
         }
         &--close{
-            position: absolute;
-            right : 1.5em;
+            display: flex;
+            justify-content: right;
+            padding:  12px 12px 0 0;
             img{
+                height: 15px;
                 width: 15px;
             }
         }

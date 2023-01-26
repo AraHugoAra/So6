@@ -54,27 +54,29 @@ export default function PostDetail({ post_id, modalIsOpen, closeModal }) {
         onRequestClose={closeModal}
         style={customStyles}
       >
-        <div className="modal__post">
-          <button className="modal__post--close" onClick={closeModal}>
-            <img src={close} alt="fermer" />
-          </button>
+        <div className="modal__post container--post">
           {!loading && !error && post && (
             <div className="post">
-              <div className="post__user">
-                <Link className="post__link" to={`/users/${post.user_id}`}>
-                  <img
-                    className="post__user__avatar avatar"
-                    src={post.avatar || "./../../public/favicon.ico"}
-                  />
-                </Link>
-                <div className="post__user__text">
+              <div className="post__header">
+                <div className="post__user">
                   <Link className="post__link" to={`/users/${post.user_id}`}>
-                    <p className="post__user__text__nickname">
-                      {post.nickname}
-                    </p>
+                    <img
+                      className="post__user__avatar avatar"
+                      src={post.avatar || "./../../public/favicon.ico"}
+                    />
                   </Link>
-                  <p className="post__user__text__body body">{post.body}</p>
+                  <div className="post__user__text">
+                    <Link className="post__link" to={`/users/${post.user_id}`}>
+                      <p className="post__user__text__nickname">
+                        {post.nickname}
+                      </p>
+                    </Link>
+                    <p className="post__user__text__body body">{post.body}</p>
+                  </div>
                 </div>
+                <button className="modal__post--close" onClick={closeModal}>
+                  <img src={close} alt="fermer" />
+                </button>
               </div>
               <img
                 className="modal__media"

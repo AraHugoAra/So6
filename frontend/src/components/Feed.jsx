@@ -23,7 +23,7 @@ export default function Feed({}) {
   }
 
     return (
-      <div className="feed">
+      <div className="feed container">
         {!loading &&
           !error &&
           data.posts &&
@@ -57,7 +57,7 @@ export default function Feed({}) {
                   <Like target_id={post.id} target_type={0} />
                 </div>
                 <button onClick={(e) => openModal(post.id)}>
-                  <img src={Comment} alt="Ajouter du sel aux commentaires"/>
+                  <img src={Comment} alt="Commenter"/>
                 </button>
               </div>
               <button onClick={(e) => openModal(post.id)}>
