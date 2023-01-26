@@ -14,11 +14,11 @@ export default function UploadWidget({label, description, imageUploaded, setImag
     widgetRef.current = cloudinaryRef.current.createUploadWidget({
       cloudName: import.meta.env.VITE_CLOUDINARY_NAME,
       uploadPreset: import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET,
-      cropping: true, //ajoute une étape "rogner"
-      croppingCoordinatesMode: 'custom',
-      showSkipCropButton: false,
-      croppingAspectRatio: 1,
-      croppingShowBackButton: true,
+      // cropping: true, //ajoute une étape "rogner"
+      // croppingCoordinatesMode: 'custom',
+      // showSkipCropButton: false,
+      // croppingAspectRatio: 1,
+      // croppingShowBackButton: true,
       // showAdvancedOptions: true,  //affiche les options avancées (public_id et tag)
       // sources: [ "local", "url"], // restreint l'upload aux sources locales et URL
       multiple: false,  //restreint à un unpload unique (vs multiple)
@@ -30,7 +30,6 @@ export default function UploadWidget({label, description, imageUploaded, setImag
       maxImageWidth: 600, //Réduit la largeur de l'image à 600px à l'upload
       // theme: "purple", //choisit un thème
     }, function(error, result) {
-      // console.log(result)
       if(result.event === "success") {
         setThumbnail(result.info.thumbnail_url)
         setImageUploaded(result.info.url)
