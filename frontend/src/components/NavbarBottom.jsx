@@ -6,7 +6,6 @@ import { UserContext } from '../context/UserContext';
 
 const NavbarBottom = () => {
   const {user} = useContext(UserContext)
-  console.log("localStoreUser ----", user)
 
     return (
       <div className="navbar-bottom">
@@ -19,9 +18,7 @@ const NavbarBottom = () => {
                 className="navbar__logo"
               />
             </Link>
-            <Link to={`/users/${user?.id}`}>
               <Avatar user={user} />
-            </Link>
           </div>
         </div>
       </div>

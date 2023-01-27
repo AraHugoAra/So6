@@ -21,9 +21,8 @@ export default function Feed({}) {
   }
 
   return (
-    <div className="feed container--post" onClick={() => {modalIsOpen && closeModal()}}>
-      {!loading &&
-        !error &&
+    <div className="feed container--post">
+      {!loading && !error &&
         data.posts &&
         data.posts.map((post) => (
           <div className="post" key={post.id}>
@@ -41,24 +40,25 @@ export default function Feed({}) {
                 <p className="post__user__text__body body"> {post.vegan === 1 && <img className="post__vegan" src={veganIMG} />}{post.body}</p>
               </div>
             </div>
-            <div className="post__media">
+            {/* <div className="post__media"> */}
               <img
+                className="post__media"
                 onClick={(e) => openModal(post.id)}
                 src={post.media}
                 alt="image de saucisse postée"
               />
+              {/* </div> */}
                   <PostDetail
                     postId={modalIsOpen}
                     modalIsOpen={modalIsOpen === post.id}
                     closeModal={closeModal}
                   />
-            </div>
             <div className="post__buttons">
               <div className="post__buttons__like">
                 <Like target_id={post.id} target_type={0} />
               </div>
               <button onClick={(e) => openModal(post.id)}>
-                <img src={Comment} alt="Commenter" />
+                <img src={Comment} alt="Commenter" title="Ajoutez votre grain de sel"/>
               </button>
             </div>
             <button onClick={(e) => openModal(post.id)}>
