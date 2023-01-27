@@ -29,9 +29,9 @@ export default function Posts({posts, modalIsOpen, closeModal, setIsOpen}) {
                   <p className="post__user__text__body body"> {post.vegan === 1 && <img className="post__vegan" src={veganIMG} />}{post.body}</p>
                 </div>
               </div>
-              <div className="post__media">
                 <img
                   onClick={(e) => openModal(post.id)}
+                  className="post__media"
                   src={post.media}
                   alt="image de saucisse postée"
                 />
@@ -41,7 +41,6 @@ export default function Posts({posts, modalIsOpen, closeModal, setIsOpen}) {
                   modalIsOpen={post.id===modalIsOpen}
                   closeModal={closeModal}
                 />
-              </div>
               <div className="post__buttons">
                 <div className="post__buttons__like">
                   <Like target_id={post.id} target_type={0} />
