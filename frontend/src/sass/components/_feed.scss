@@ -1,3 +1,16 @@
+.feed{
+    &__vegan-mode{
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        img{
+            width: 30px;
+            height: auto;
+            object-fit: contain;
+        }
+    }
+}
+
 .post {
     // &--modal {
     //     z-index: 2;
