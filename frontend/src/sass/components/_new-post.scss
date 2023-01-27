@@ -1,0 +1,45 @@
+.new-post {
+    // min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    max-width: 250px;
+    &__close {
+        align-self: flex-end;
+        img {
+            width: 15px;
+        }
+    }
+    &__checkbox {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 15px;
+        label {
+            align-self: center;
+        }
+    }
+    &__flavour-text {
+        font-weight: bold;
+        color: $colour-secondary;
+        // text-align: center;
+    }
+    &__logo {
+        text-align: center;
+        img {
+            width: 80px;
+        }
+    }
+    &__form {
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: stretch;
+            gap: 10px;
+            label {
+                font-size: 1.8rem;
+            }
+        }
+    }
+}

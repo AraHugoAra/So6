@@ -6,9 +6,17 @@
         max-width: $max-width;
         height: auto;
     }
-
     &--post{
+        max-width: $max-width;
+        margin: 0 auto;
         text-align: left;
         padding: 0;
+    }
+    &--new-post{
+        max-width: 250px;
+        margin: 0 auto;
+        text-align: right;
+        padding: 0;
+
     }
 }

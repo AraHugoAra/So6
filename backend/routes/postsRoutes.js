@@ -58,8 +58,8 @@ function postsRoutes(app, db)  {
         const { media, body, vegan = false } = {...req.body}
         try{
             const responseDB = await db.query(
-                "INSERT INTO posts (media,body, user_id,vegan) VALUES (?,?,?,?)",
-                [media,body, user_id,vegan]
+                "INSERT INTO posts (media, body, user_id, vegan) VALUES (?,?,?,?)",
+                [media, body, user_id, vegan]
               );
               res.json({ status: 200, responseDB })
         }
