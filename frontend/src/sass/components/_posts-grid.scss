@@ -1,6 +1,21 @@
 .posts-grid {
   flex-grow: 1;
   padding-bottom: $navbar-height;
+    &__no-images {
+      display: flex;
+      align-items: center;
+      background: linear-gradient(rgba(255,255,255,.9), rgba(255,255,255,.9)), url("https://epicier.ca/wp-content/uploads/2020/06/saucisse-bbq.jpg");
+      // width: 95vw;
+      height: 80vw;
+      background-size: cover;
+      &__text {
+        text-align: center;
+        margin: 0 24px;
+        color: $colour-black;
+        // color: $colour-white;
+
+      }
+    }
     &__all-images {
       position: relative;
       display: flex;
@@ -21,4 +36,5 @@
       object-fit: cover;
       margin: 0.05em;
     }
+
 }
