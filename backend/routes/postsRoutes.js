@@ -43,7 +43,7 @@ function postsRoutes(app, db)  {
             const posts = await db.query(
                 "SELECT posts.id,posts.timestamp,posts.media,posts.user_id, users.avatar, users.nickname "+
                 "FROM posts " +
-                "INNER JOIN users ON users.id = posts.user_id WHERE users.id= (?) "+
+                "RIGHT JOIN users ON users.id = posts.user_id WHERE users.id= (?) "+
                 "ORDER BY posts.timestamp DESC",[user_id])
             res.json({status: 200, posts})
         }

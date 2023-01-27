@@ -12,10 +12,13 @@ import AuthChecker from "../services/AuthChecker";
 
 const customStyles = {
   content: {
-    top: "0%",
-    left: "0%",
-    right: "0%",
-    bottom: "0%",
+    top: '10%',
+    left: '5%',
+    right: '5%',
+    bottom: '5%',
+    padding: "0",
+  },
+  overlay: {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
 };
@@ -58,15 +61,15 @@ export default function PostDetail({postId,modalIsOpen, closeModal }) {
           style={customStyles}
           contentLabel="Post details"
         >
-          <div className="modal__post container--post">
+          {/* <div className="modal__post container--post"> */}
             {!loading && !error && post && (
-              <div className="post">
+              <div className="post--modal">
                 <div className="post__header">
                   <div className="post__user">
                     <Link className="post__link" to={`/users/${post.user_id}`}>
                       <img
                         className="post__user__avatar avatar"
-                        src={post.avatar || "./../../public/favicon.ico"}
+                        src={post.avatar || "/favicon.ico"}
                       />
                     </Link>
                     <div className="post__user__text">
@@ -92,13 +95,13 @@ export default function PostDetail({postId,modalIsOpen, closeModal }) {
                     <Like target_id={post.id} target_type={0} />
                   </div>
                   <label form="addcommentform" htmlFor="addcomment">
-                    <img src={commentIMG} />
+                    <img src={commentIMG} title="Ajoutez votre grain de sel" />
                   </label>
                 </div>
                 <Comments postId={postId} />
               </div>
             )}
-          </div>
+          {/* </div> */}
         </Modal>
       </AuthChecker>}
     </div>

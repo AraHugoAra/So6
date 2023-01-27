@@ -4,12 +4,12 @@ import HandleImageError from '../services/HandleImageError';
 import useFetch from "../hooks/useFetch";
 
 
-const Avatar = ({user}) => {
+const Avatar = (props) => {
   const { id } = useParams()
   let userData = {}
 
-  if (user) {
-    userData = user
+  if (props.user) {
+    userData = props.user
   } else {
     const { data, loading, error } = useFetch(`users/${id}`, null, [window.location.href]);
     (!loading && !error) && (userData = data?.user[0]);
@@ -18,7 +18,7 @@ const Avatar = ({user}) => {
       <>
         <NavLink className="" to={`/users/${userData?.id}`}>
           <img
-            src={userData?.avatar}
+            src={userData.avatar || '/favicon.ico'}
             onError={HandleImageError}
             alt={userData?.nickname + "'s image"}
             className="avatar"
