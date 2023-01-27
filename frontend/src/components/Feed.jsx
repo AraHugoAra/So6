@@ -22,7 +22,7 @@ export default function Feed({}) {
   }
 
   return (
-    <div className="feed container--post" onClick={() => (modalIsOpen !==false) && closeModal}>
+    <div className="feed container--post" onClick={() => !modalIsOpen && closeModal()}>
       {!loading &&
         !error &&
         data.posts &&

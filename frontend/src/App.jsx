@@ -4,7 +4,6 @@ import Landing from './components/Landing'
 import './sass/main.scss'
 import Login from './components/Login'
 import NavbarTop from './components/NavbarTop'
-import UserProfile from './components/UserProfile'
 import PostsGrid from './components/PostsGrid'
 import NavbarBottom from './components/NavbarBottom'
 import { AuthContext } from "./context/AuthContext";
@@ -18,7 +17,8 @@ function App() {
   const userData = localStorage.getItem('userData');
   const [user, setUser] = useState(userData ? JSON.parse(userData) : null );
   useEffect(() => localStorage.setItem('userData', JSON.stringify(user)), [user])
-
+  
+  // ca merde ici 👇 => 
   return (
     <AuthContext.Provider
       value={{
@@ -51,18 +51,6 @@ function App() {
             element={
               <AuthChecker>
                 <NavbarTop />
-                <UserProfile />
-                <PostsGrid />
-                <NavbarBottom />
-              </AuthChecker>
-            }
-          />
-          <Route 
-            path="/test"
-            element={
-              <AuthChecker>
-                <NavbarTop />
-                <UserProfile />
                 <PostsGrid />
                 <NavbarBottom />
               </AuthChecker>
