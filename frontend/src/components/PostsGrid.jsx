@@ -30,9 +30,8 @@ const PostsGrid = () => {
           <div className="posts-grid__row-images">
             {!loading && !error &&
               data.posts.map((post) => (
-                <>
+                <div key={post.id}>
                 <img
-                  key={post.id}
                   className="posts-grid__image"
                   src={post.media}
                   alt={"image n°" + post.id}
@@ -43,7 +42,7 @@ const PostsGrid = () => {
                   modalIsOpen={post.id===modalIsOpen}
                   closeModal={closeModal}
                 />
-              </>
+              </div>
               ))}
           </div>
         </article>
