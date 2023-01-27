@@ -35,7 +35,7 @@ export default function Feed({}) {
       {(!loading && !error) &&
         ( veganMode ? <Posts posts={veganPosts} modal={false} modalIsOpen={modalIsOpen} closeModal={closeModal} setIsOpen={setIsOpen}/>
         : <Posts posts={data.posts} modal={false} modalIsOpen={modalIsOpen} closeModal={closeModal} setIsOpen={setIsOpen}/>
-        }
+        )}
     </div>
   );
 }
