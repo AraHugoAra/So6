@@ -1,5 +1,4 @@
-import React, { useState, useContext } from "react";
-import { UserContext } from '../context/UserContext';
+import React from "react";
 import { Link, useParams } from 'react-router-dom';
 import HandleImageError from '../services/HandleImageError';
 import useFetch from "../hooks/useFetch";
@@ -14,7 +13,6 @@ const Avatar = ({user}) => {
   } else {
     const { data, loading, error } = useFetch(`users/${id}`, null, []);
     (!loading && !error) && (userData = data?.user[0]);
-
   }
     return (
       <>

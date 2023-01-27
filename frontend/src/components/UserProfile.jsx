@@ -1,7 +1,4 @@
-import React, { useContext } from 'react';
-import { useParams } from 'react-router-dom';
-import { UserContext } from '../context/UserContext';
-import useFetch from '../hooks/useFetch';
+import React from 'react';
 import AvatarBig from './AvatarBig';
 
 
