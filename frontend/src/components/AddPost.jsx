@@ -1,7 +1,8 @@
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import UploadWidget from '../services/UploadWidget'
 import { useState } from 'react'
 import close from '../assets/icons/close.png'
+import logo from '../assets/icons/So6_logo_light.svg'
 
 export default function Signup() {
     const [ imageUploaded, setImageUploaded ] = useState(null)
@@ -21,42 +22,40 @@ export default function Signup() {
     function handleSubmit(e) {
         e.preventDefault()
         const body = {
-            vegan: e.target.elements.vegan.value,
+            vegan: e.target.elements.vegan.checked ? 1 : 0,
             body: e.target.elements.description.value,
             media: imageUploaded,
         }
-            // console.log(body)
             postFetch(body)
             e.target.reset()
             navigate('/')
         }
 
     return(
-        <div className="container">
-            <Link className="modal__post--close" to="/">
+        <div className="container--new-post new-post">
+            <Link className='new-post__close' to="/">
                 <img src={close} alt="get back" />
             </Link>
+            <div className="new-post__logo">
+                <img src={logo} alt="so6-logo" />
+                <p className='new-post__flavour-text' >Qu'allez-vous partager de bon avec vos amis aujourd'hui ?</p>
+            </div>
             <div className="new-post__form">
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <UploadWidget 
-                        label="Ajouter une image" 
+                        label="Téléverser une image" 
                         description={"Votre image:"} 
                         imageUploaded={imageUploaded} 
                         setImageUploaded={setImageUploaded}
                         style="big"
                     />
                     <label htmlFor="description">Description:</label>
-                    <input type="text" id="description" placeholder='(optionnel)'/>
-                    <label htmlFor="vegan">Vegan?</label>
-                    <select defaultValue={0} id="vegan">
-                        <option value={1}>
-                            Oui
-                        </option>
-                        <option value={0}>
-                            Non
-                        </option>
-                    </select>
-                    <button type="submit">Poster</button>
+                    <input type="text" id="description" placeholder='(optionnelle)'/>
+                    <div className="new-post__checkbox">
+                        <label htmlFor="vegan">Vegan?</label>
+                        <input type="checkbox" id="vegan" />
+                    </div>
+                    <button type="submit">Partager</button>
                 </form>
             </div>
         </div>
