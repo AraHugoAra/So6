@@ -7,12 +7,12 @@
   margin-left: 4px;
 }
 
-.avatar-large {
+.avatar-large img {
   width: $avatar-large;
   height: $avatar-large;
 }
 
-.avatar-bordered {
+.avatar-bordered img {
   border: 0.25em solid transparent;
   background: linear-gradient(45deg, $colour-sausage, $colour-brown) border-box;
   -webkit-mask-composite: xor;
