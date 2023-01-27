@@ -4,6 +4,7 @@ import { useState } from 'react'
 import close from '../assets/icons/close.png'
 import logo from '../assets/icons/So6_logo_light.svg'
 import ToggleSwitch from './ToggleSwitch'
+import veganIMG from '../assets/icons/vegetalien.png'
 
 export default function Signup() {
     const [ imageUploaded, setImageUploaded ] = useState(null)
@@ -57,7 +58,10 @@ export default function Signup() {
                         <label htmlFor="vegan">Vegan?</label>
                         <input type="checkbox" id="vegan" />
                     </div> */}
-                    <ToggleSwitch comp="checkbox" setVeganMode={setChecked} />
+                    <div className="feed__vegan-mode">
+                        <img className="feed__vegan-mode" src={veganIMG} />
+                        <ToggleSwitch comp="checkbox" setVeganMode={setChecked} />
+                    </div>
                     <button type="submit">Partager</button>
                 </form>
             </div>
