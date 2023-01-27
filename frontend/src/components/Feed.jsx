@@ -10,21 +10,18 @@ import veganIMG from "./../assets/icons/vegetalien.png";
 
 export default function Feed({}) {
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [postId, setPostId] = useState(null);
 
   const { data, loading, error } = useFetch("posts", {}, [modalIsOpen]);
 
   function openModal(post_id) {
-    setIsOpen(true);
-    setPostId(post_id);
+    setIsOpen(post_id);
   }
   function closeModal() {
-    setIsOpen(false);
-    setPostId(null);
+    setIsOpen(null);
   }
 
   return (
-    <div className="feed container--post">
+    <div className="feed container--post" onClick={modalIsOpen && closeModal}>
       {!loading &&
         !error &&
         data.posts &&
@@ -52,8 +49,8 @@ export default function Feed({}) {
               />
 
               <PostDetail
-                post_id={postId}
-                modalIsOpen={modalIsOpen}
+                postId={modalIsOpen}
+                modalIsOpen={post.id===modalIsOpen}
                 closeModal={closeModal}
               />
             </div>

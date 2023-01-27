@@ -21,7 +21,7 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-export default function PostDetail({ post_id, modalIsOpen, closeModal }) {
+export default function PostDetail({postId,modalIsOpen, closeModal }) {
   const [post, setPost] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -39,13 +39,9 @@ export default function PostDetail({ post_id, modalIsOpen, closeModal }) {
     }
   }
 
-  async function fetchModal() {
-    const urlPost = import.meta.env.VITE_BASE_URL + "/posts/" + post_id;
-    await fetchPost(urlPost);
-  }
-
   function afterOpenModal() {
-    fetchModal();
+    const urlPost = import.meta.env.VITE_BASE_URL + "/posts/" + postId;
+    fetchPost(urlPost);
   }
 
   return (
@@ -55,6 +51,7 @@ export default function PostDetail({ post_id, modalIsOpen, closeModal }) {
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
+        contentLabel="Post details"
       >
         <div className="modal__post container--post">
           {!loading && !error && post && (
@@ -93,7 +90,7 @@ export default function PostDetail({ post_id, modalIsOpen, closeModal }) {
                   <img src={commentIMG} />
                 </label>
               </div>
-              <Comments post_id={post_id} />
+              <Comments postId={postId} />
             </div>
           )}
         </div>

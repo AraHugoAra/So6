@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import Like from "./Like";
 
-export default function Comments({ post_id }) {
+export default function Comments({ postId }) {
   const [comments, setComments] = useState(null);
   const [updating, setUpdating] = useState(null);
   const [loading, setLoading] = useState(null);
@@ -41,7 +41,7 @@ export default function Comments({ post_id }) {
   function handleSubmit(e) {
     e.preventDefault();
     const url =
-      import.meta.env.VITE_BASE_URL + "/posts/" + post_id + "/comments/add";
+      import.meta.env.VITE_BASE_URL + "/posts/" + postId + "/comments/add";
     const fetchParams = {
       method: "POST",
       mode: "cors",
@@ -58,7 +58,7 @@ export default function Comments({ post_id }) {
 
   useEffect(() => {
     const urlComments =
-      import.meta.env.VITE_BASE_URL + "/posts/" + post_id + "/comments";
+      import.meta.env.VITE_BASE_URL + "/posts/" + postId + "/comments";
     fetchComments(urlComments);
   }, [updating]);
 
