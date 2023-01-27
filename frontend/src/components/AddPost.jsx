@@ -3,9 +3,11 @@ import UploadWidget from '../services/UploadWidget'
 import { useState } from 'react'
 import close from '../assets/icons/close.png'
 import logo from '../assets/icons/So6_logo_light.svg'
+import ToggleSwitch from './ToggleSwitch'
 
 export default function Signup() {
     const [ imageUploaded, setImageUploaded ] = useState(null)
+    const [ checked, setChecked ] = useState(false)
     const navigate = useNavigate()
 
     async function postFetch(body) {
@@ -22,7 +24,7 @@ export default function Signup() {
     function handleSubmit(e) {
         e.preventDefault()
         const body = {
-            vegan: e.target.elements.vegan.checked ? 1 : 0,
+            vegan: checked ? 1 : 0,
             body: e.target.elements.description.value,
             media: imageUploaded,
         }
@@ -51,10 +53,11 @@ export default function Signup() {
                     />
                     <label htmlFor="description">Description:</label>
                     <input type="text" id="description" placeholder='(optionnelle)'/>
-                    <div className="new-post__checkbox">
+                    {/* <div className="new-post__checkbox">
                         <label htmlFor="vegan">Vegan?</label>
                         <input type="checkbox" id="vegan" />
-                    </div>
+                    </div> */}
+                    <ToggleSwitch comp="checkbox" setVeganMode={setChecked} />
                     <button type="submit">Partager</button>
                 </form>
             </div>
