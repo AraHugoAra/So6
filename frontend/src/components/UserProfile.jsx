@@ -8,7 +8,7 @@ const UserProfile = (props) => {
       <div className="user-profile">
         <AvatarBig avatar={props.avatar}/>
         <p className="user-profile__nickname">
-          {props.nickname}
+          {props?.nickname}
         </p>
      </div>
     )
