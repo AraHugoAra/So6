@@ -51,8 +51,8 @@ export default function Feed({}) {
 
               <AuthChecker>
                   <PostDetail
-                    post_id={postId}
-                    modalIsOpen={modalIsOpen}
+                    post_id={modalIsOpen}
+                    modalIsOpen={modalIsOpen === post.id}
                     closeModal={closeModal}
                   />
                 </AuthChecker>
