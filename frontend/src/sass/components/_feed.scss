@@ -41,11 +41,18 @@
     &__media {
         display: flex;
         justify-content: center;
+        position: relative;
+        z-index: 0;
         img { 
             width: 100vw;
             height: 100vw; 
-
-        }
+            
+        };
+    }
+    &__vegan{
+        width :18px;
+        height: auto;
+        padding-right: 0.5em;
     }
     &__text{
         .body{
