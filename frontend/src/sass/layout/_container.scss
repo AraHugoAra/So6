@@ -8,7 +8,7 @@
     }
     &--post{
         max-width: $max-width;
-        margin: 0 auto;
+        margin: $navbar-height auto;
         text-align: left;
         padding: 0;
     }
@@ -16,7 +16,7 @@
         max-width: 250px;
         margin: 0 auto;
         text-align: right;
-        padding: 0;
+        padding: $navbar-height 0;
 
     }
 }

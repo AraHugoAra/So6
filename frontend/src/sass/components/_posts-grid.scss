@@ -1,5 +1,6 @@
 .posts-grid {
   flex-grow: 1;
+  padding-bottom: $navbar-height;
     &__no-images {
       display: flex;
       align-items: center;

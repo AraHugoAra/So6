@@ -7,11 +7,14 @@ const customStyles = {
     content: {
       top: '50%',
       left: '50%',
-      right: 'auto',
+      right: '10%',
       bottom: 'auto',
       marginRight: '-50%',
-      transform: 'translate(-50%, -60%)',
+      transform: 'translate(-50%, -60%)'
     },
+    overlay: {
+      background: "rgba(0, 0, 0, 0.5)"
+    }
   };
 
 Modal.setAppElement('#root')
@@ -50,10 +53,10 @@ export default function Logout() {
                 style={customStyles}
                 contentLabel="Logout confirm modal"
             >
-            <p className='modal__description--logout'>Etes-vous sûr.e de vouloir infirmer votre envie de ne pas désirer le fait d'arrêter de ne pas être déconnecté.e ?</p>
+            <p className='modal__description--logout'>Etes-vous sûr.e d'être incertain de vouloir infirmer votre envie de ne pas désirer le fait d'arrêter de ne pas être déconnecté.e ?</p>
             <form>
-                <button onClick={(e) => handleClick(e)}>Non je ne souhaite pas ne pas infirmer.</button>
-                <button onClick={closeModal}>Oui je confirme mon refus de non validation.</button>
+                <button type="button" onClick={(e) => handleClick(e)}>Non je ne souhaite pas ne pas infirmer.</button>
+                <button type="button" onClick={closeModal}>Oui je confirme mon refus de non validation.</button>
             </form>
             </Modal>
             <img className='navbar__logo' src={logout} onClick={openModal} />
