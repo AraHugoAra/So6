@@ -8,6 +8,7 @@ import Comments from "./Comments";
 import commentIMG from "./../assets/icons/salt-light-mode.svg";
 import veganIMG from "./../assets/icons/vegetalien.png";
 import close from "./../assets/icons/close.png";
+import AuthChecker from "../services/AuthChecker";
 
 const customStyles = {
   content: {
@@ -49,55 +50,57 @@ export default function PostDetail({postId,modalIsOpen, closeModal }) {
   return (
     <div>
       {modalIsOpen &&
-      <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Post details"
-      >
-        <div className="modal__post container--post">
-          {!loading && !error && post && (
-            <div className="post">
-              <div className="post__header">
-                <div className="post__user">
-                  <Link className="post__link" to={`/users/${post.user_id}`}>
-                    <img
-                      className="post__user__avatar avatar"
-                      src={post.avatar || "./../../public/favicon.ico"}
-                    />
-                  </Link>
-                  <div className="post__user__text">
+      <AuthChecker>
+        <Modal
+          isOpen={modalIsOpen}
+          onAfterOpen={afterOpenModal}
+          onRequestClose={closeModal}
+          style={customStyles}
+          contentLabel="Post details"
+        >
+          <div className="modal__post container--post">
+            {!loading && !error && post && (
+              <div className="post">
+                <div className="post__header">
+                  <div className="post__user">
                     <Link className="post__link" to={`/users/${post.user_id}`}>
-                      <p className="post__user__text__nickname">
-                        {post.nickname}
-                      </p>
+                      <img
+                        className="post__user__avatar avatar"
+                        src={post.avatar || "./../../public/favicon.ico"}
+                      />
                     </Link>
-                    <p className="post__user__text__body body">{post.vegan === 1 && <img className="post__vegan" src={veganIMG} />}{post.body}</p>
+                    <div className="post__user__text">
+                      <Link className="post__link" to={`/users/${post.user_id}`}>
+                        <p className="post__user__text__nickname">
+                          {post.nickname}
+                        </p>
+                      </Link>
+                      <p className="post__user__text__body body">{post.vegan === 1 && <img className="post__vegan" src={veganIMG} />}{post.body}</p>
+                    </div>
                   </div>
+                  <button className="modal__post--close" onClick={closeModal}>
+                    <img src={close} alt="fermer" />
+                  </button>
                 </div>
-                <button className="modal__post--close" onClick={closeModal}>
-                  <img src={close} alt="fermer" />
-                </button>
-              </div>
-              <img
-                className="modal__media"
-                src={post.media}
-                alt="image de saucisse postée"
-              />
-              <div className="post__buttons">
-                <div>
-                  <Like target_id={post.id} target_type={0} />
+                <img
+                  className="modal__media"
+                  src={post.media}
+                  alt="image de saucisse postée"
+                />
+                <div className="post__buttons">
+                  <div>
+                    <Like target_id={post.id} target_type={0} />
+                  </div>
+                  <label form="addcommentform" htmlFor="addcomment">
+                    <img src={commentIMG} />
+                  </label>
                 </div>
-                <label form="addcommentform" htmlFor="addcomment">
-                  <img src={commentIMG} />
-                </label>
+                <Comments postId={postId} />
               </div>
-              <Comments postId={postId} />
-            </div>
-          )}
-        </div>
-      </Modal>}
+            )}
+          </div>
+        </Modal>
+      </AuthChecker>}
     </div>
   );
 }
