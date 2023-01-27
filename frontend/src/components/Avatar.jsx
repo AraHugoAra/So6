@@ -1,20 +1,32 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useContext } from "react";
+import { UserContext } from '../context/UserContext';
+import { Link, useParams } from 'react-router-dom';
 import HandleImageError from '../services/HandleImageError';
+import useFetch from "../hooks/useFetch";
 
 
-const Avatar = () => {
+const Avatar = ({user}) => {
+  const { id } = useParams()
+  let userData = {}
+
+  if (user) {
+    userData = user
+  } else {
+    const { data, loading, error } = useFetch(`users/${id}`, null, []);
+    (!loading && !error) && (userData = data?.user[0]);
+
+  }
     return (
-      // <Link className="post__link" to={`/users/${post.user_id}`}>
-        <img
-          // src={user?.avatar}
-          src={localStorage.avatar}
-          onError={HandleImageError}
-          // alt={user?.nickname + "'s image"}
-          alt={localStorage.nickname + "'s image"}
-          className="avatar"
-        />
-      // </Link>
+      <>
+        <Link className="" to={`/users/${userData?.id}`}>
+          <img
+            src={userData?.avatar}
+            onError={HandleImageError}
+            alt={userData?.nickname + "'s image"}
+            className="avatar"
+          />
+        </Link>
+      </>
     );
 }
 

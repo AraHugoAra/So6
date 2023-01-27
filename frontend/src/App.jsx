@@ -19,7 +19,8 @@ function App() {
   const userData = localStorage.getItem('userData');
   const [user, setUser] = useState(userData ? JSON.parse(userData) : null );
   useEffect(() => localStorage.setItem('userData', JSON.stringify(user)), [user])
-
+  
+  // ca merde ici 👇 => 
   return (
     <AuthContext.Provider
       value={{
@@ -52,7 +53,7 @@ function App() {
             element={
               <AuthChecker>
                 <NavbarTop />
-                <UserProfile />
+                {/* <UserProfile /> */}
                 <PostsGrid />
                 <NavbarBottom />
               </AuthChecker>

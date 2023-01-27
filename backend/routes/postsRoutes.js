@@ -41,10 +41,10 @@ function postsRoutes(app, db)  {
         const user_id = req.params.user_id
         try {
             const posts = await db.query(
-                "SELECT posts.id,posts.timestamp,posts.media "+
+                "SELECT posts.id,posts.timestamp,posts.media,posts.user_id, users.avatar, users.nickname "+
                 "FROM posts " +
                 "INNER JOIN users ON users.id = posts.user_id WHERE users.id= (?) "+
-                "ORDER BY posts.timestamp",[user_id])
+                "ORDER BY posts.timestamp DESC",[user_id])
             res.json({status: 200, posts})
         }
         catch(error) {

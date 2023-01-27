@@ -1,17 +1,15 @@
 import React, { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
 import HandleImageError from '../services/HandleImageError';
+import Avatar from './Avatar';
 
 
-const AvatarBig = () => {
-  const {user} = useContext(UserContext)
+const AvatarBig = (props) => {
+  // const {user} = useContext(UserContext)
     return (
-      <img
-        src={user?.avatar}
-        onError={HandleImageError}
-        alt={user?.nickname + "'s image"}
-        className="avatar avatar-large avatar-bordered"
-      />
+      <div className="avatar-large avatar-bordered">
+        <Avatar avatar={props.avatar} />
+      </div>
     );
 }
 
