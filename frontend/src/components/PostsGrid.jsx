@@ -1,53 +1,36 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useInsertionEffect} from 'react';
+import { useParams } from 'react-router-dom';
+import useFetch from '../hooks/useFetch';
+import Avatar from './Avatar';
+import UserProfile from './UserProfile';
 
 const PostsGrid = () => {
-    const [error, setError] = useState()
-    const [loading, setLoading] = useState()
-    const [posts, setPosts] = useState()
+    const { id } = useParams()
+    const { data, loading, error } = useFetch(`users/${id}/posts`, null, []);
 
-    function fetchPosts(url){
-        fetch(url)
-            .then((res) =>{ 
-                return res.json()
-            })
-            .then ((data) => {
-                setPosts(data.posts)
-                setLoading(false)
-            })
-            .catch((err) => {
-                setError(err)
-                setLoading(false)
-            })
-    }
-
-    useEffect(() => {
-        const URL = import.meta.env.VITE_BASE_URL + "/posts"
-        fetchPosts(URL)
-        return () => {
-          // needs to be stoped
-        }
-
-    },[posts])
-
-    const userNickname = localStorage.getItem('nickname')
-
-    // user and user's posts
     return (
-      <article className="posts-grid">
-        <div className="posts-grid__row-images">
-          {(loading === false &&
-            posts !== null) &&
-            posts.map((post) => (
-              (post.nickname === userNickname) &&
-              <img
-                key={post.id}
-                className="posts-grid__image"
-                src={post.media}
-                alt={"image n°" + post.id}
-              />
-            ))}
-        </div>
-      </article>
+      <>
+        {!loading && !error && data.status === 200 && (
+            <UserProfile
+              // key={data.posts[0].nickname}
+              nickname={data.posts[0].nickname}
+              avatar={data.posts[0].avatar}
+            />
+        )}
+        <article className="posts-grid">
+          <div className="posts-grid__row-images">
+            {!loading && !error &&
+              data.posts.map((post) => (
+                  <img
+                    key={post.id}
+                    className="posts-grid__image"
+                    src={post.media}
+                    alt={"image n°" + post.id}
+                  />
+              ))}
+          </div>
+        </article>
+      </>
     );
 }
 
