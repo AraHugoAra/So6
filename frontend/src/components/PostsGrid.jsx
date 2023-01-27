@@ -28,7 +28,7 @@ const PostsGrid = () => {
         )}
         <article className="posts-grid">
           <div className="posts-grid__row-images">
-            {!loading && !error && (data.posts.length === 0) ? (
+            {!loading && !error && (data.posts.length === 0 || !data.posts[0].media) ? (
               <>
                 {console.log("data: ", data.posts)}
                 <div className="posts-grid__no-images">
