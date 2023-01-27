@@ -10,6 +10,7 @@ import { AuthContext } from "./context/AuthContext";
 import { UserContext } from './context/UserContext'
 import { useEffect, useState } from "react";
 import AuthChecker from "./services/AuthChecker";
+import AddPost from "./components/AddPost"
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -52,6 +53,16 @@ function App() {
                 <NavbarTop />
                 <PostsGrid />
                 <NavbarBottom />
+              </AuthChecker>
+            }
+          />
+          <Route
+            exact path = "/posts/add"
+            element = {
+              <AuthChecker>
+                <NavbarTop/>
+                <AddPost />
+                <NavbarBottom/>
               </AuthChecker>
             }
           />

@@ -4,7 +4,9 @@ import Modal from "react-modal";
 
 import Like from "./Like";
 import Comments from "./Comments";
+
 import commentIMG from "./../assets/icons/salt-light-mode.svg";
+import veganIMG from "./../assets/icons/vegetalien.png";
 import close from "./../assets/icons/close.png";
 
 const customStyles = {
@@ -19,12 +21,13 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-export default function PostDetail({ post_id, modalIsOpen, closeModal }) {
+export default function PostDetail({postId,modalIsOpen, closeModal }) {
   const [post, setPost] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
   async function fetchPost(url) {
+    if(modalIsOpen) {
     setLoading(true);
     try {
       const response = await fetch(url);
@@ -36,23 +39,22 @@ export default function PostDetail({ post_id, modalIsOpen, closeModal }) {
       setLoading(false);
     }
   }
-
-  async function fetchModal() {
-    const urlPost = import.meta.env.VITE_BASE_URL + "/posts/" + post_id;
-    await fetchPost(urlPost);
-  }
+}
 
   function afterOpenModal() {
-    fetchModal();
+    const urlPost = import.meta.env.VITE_BASE_URL + "/posts/" + postId;
+    fetchPost(urlPost);
   }
 
   return (
     <div>
+      {modalIsOpen &&
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
+        contentLabel="Post details"
       >
         <div className="modal__post container--post">
           {!loading && !error && post && (
@@ -71,7 +73,7 @@ export default function PostDetail({ post_id, modalIsOpen, closeModal }) {
                         {post.nickname}
                       </p>
                     </Link>
-                    <p className="post__user__text__body body">{post.body}</p>
+                    <p className="post__user__text__body body">{post.vegan === 1 && <img className="post__vegan" src={veganIMG} />}{post.body}</p>
                   </div>
                 </div>
                 <button className="modal__post--close" onClick={closeModal}>
@@ -91,11 +93,11 @@ export default function PostDetail({ post_id, modalIsOpen, closeModal }) {
                   <img src={commentIMG} />
                 </label>
               </div>
-              <Comments post_id={post_id} />
+              <Comments postId={postId} />
             </div>
           )}
         </div>
-      </Modal>
+      </Modal>}
     </div>
   );
 }

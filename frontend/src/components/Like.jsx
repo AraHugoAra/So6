@@ -110,6 +110,7 @@ export default function Like({target_id, target_type}) {
     },[updating])
     
     return(
+        // !loading && !error &&
         <button 
           onClick={() => handleLike(target_id,target_type)}
           className="buttons__like">
