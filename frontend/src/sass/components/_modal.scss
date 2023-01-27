@@ -6,12 +6,12 @@
             font-size: 1.6rem;
         }
     }
+    &__media{
+        width: 100%;
+        height: auto;
+    }
     &__post{
-        background-color: $colour-white;
-        .modal__media{
-            width: 100%;
-            height: auto;
-        }
+        // background-color: $colour-white;
         &--close{
             display: flex;
             justify-content: right;

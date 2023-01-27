@@ -12,6 +12,9 @@
 }
 
 .post {
+    // &--modal {
+    //     z-index: 2;
+    // }
     &__header{
         display: flex;
         justify-content: space-between;
@@ -50,17 +53,22 @@
         gap: 16px;
         margin: 5px;
         align-items: flex-start;
+        &--salt:hover {
+            cursor: pointer;
+        }
     }
     &__media {
         display: flex;
         justify-content: center;
-        position: relative;
-        z-index: 0;
-        img { 
+        // position: relative;
+        // z-index: 0;
             width: 100vw;
-            height: 100vw; 
-            
-        };
+            height: 100vw;
+            // height: 100vw;
+        // img { 
+        //     width: 100vw;
+        //     height: 100vw;
+        // };
     }
     &__vegan{
         width :18px;
@@ -80,3 +88,7 @@
         }
     }
 }
+
+// .feed {
+//     padding-bottom: 60px;
+// }

@@ -31,7 +31,6 @@ export default function Feed({}) {
       <img className="feed__vegan-mode" src={veganIMG} />
         <ToggleSwitch comp="veganMode" setVeganMode={setVeganMode}/>
       </div>
-      
       {(!loading && !error) &&
         ( veganMode ? <Posts posts={veganPosts} modal={false} modalIsOpen={modalIsOpen} closeModal={closeModal} setIsOpen={setIsOpen}/>
         : <Posts posts={data.posts} modal={false} modalIsOpen={modalIsOpen} closeModal={closeModal} setIsOpen={setIsOpen}/>
