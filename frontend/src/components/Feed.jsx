@@ -6,7 +6,6 @@ import Like from "./Like";
 import PostDetail from "./PostDetail";
 
 import Comment from "./../assets/icons/salt-light-mode.svg";
-import AuthChecker from "../services/AuthChecker";
 import veganIMG from "./../assets/icons/vegetalien.png";
 
 export default function Feed({}) {
@@ -22,7 +21,7 @@ export default function Feed({}) {
   }
 
   return (
-    <div className="feed container--post" onClick={() => (modalIsOpen !==false) && closeModal}>
+    <div className="feed container--post" onClick={() => {modalIsOpen && closeModal()}}>
       {!loading &&
         !error &&
         data.posts &&
