@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext"
 
 export default function AuthChecker({ children }) {
+    console.log('AuthChecker de: ', children._source?.fileName.split('/').slice(-1))
     const navigate = useNavigate()
     const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext)
     const [ loading, setLoading ] = useState(true)

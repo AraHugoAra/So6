@@ -9,7 +9,7 @@ export default function sessionManager(app) {
             secure: false,
             httpOnly: true,
             sameSite: 'lax',
-            maxAge: 60 * 60 * 1 * 1000 //secondes . minutes . heures * conversion en ms
+            maxAge: 15 * 1 * 1 * 1000 //secondes . minutes . heures * conversion en ms
         }
     }));
 }

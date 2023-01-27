@@ -48,14 +48,11 @@ export default function Feed({}) {
                 src={post.media}
                 alt="image de saucisse postée"
               />
-
-              <AuthChecker>
                   <PostDetail
                     postId={modalIsOpen}
                     modalIsOpen={modalIsOpen === post.id}
                     closeModal={closeModal}
                   />
-                </AuthChecker>
             </div>
             <div className="post__buttons">
               <div className="post__buttons__like">
