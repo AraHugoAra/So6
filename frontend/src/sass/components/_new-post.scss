@@ -14,14 +14,14 @@
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        gap: 15px;
+        gap: 16px;
         label {
             align-self: center;
         }
     }
     &__flavour-text {
-        font-weight: bold;
-        color: $colour-secondary;
+        // font-weight: bold;
+        color: $colour-black;
         // text-align: center;
     }
     &__logo {

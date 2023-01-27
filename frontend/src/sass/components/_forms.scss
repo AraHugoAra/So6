@@ -5,9 +5,9 @@ form {
     flex-direction: column;
     label {
         align-self: flex-start;
-        color: $colour-accent;
+        color: $colour-black;
         font-size: 1.5rem;
-        font-weight: 600;
+        // font-weight: 600;
         position: relative;
         top: 2px;
     }
@@ -26,17 +26,20 @@ form {
         &::placeholder {
             letter-spacing: 3px;
             font-style: italic;
+            font-size: 12px;
             color: lighten($color: $colour-black, $amount: 60%)
         }
     }
     button {
-        background-color: $colour-primary;
+        background-color: $colour-brown;
+        padding: 4px;
         margin-top: 2rem;
         min-height: 30px;
         border: none;
-        border-radius: 5px;
+        border-radius: 4px;
         color: $colour-white;
-        font-weight: 600;
+        font-size: 16px;
+        // font-weight: 600;
     }
 }
 

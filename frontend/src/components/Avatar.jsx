@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import HandleImageError from '../services/HandleImageError';
 import useFetch from "../hooks/useFetch";
 
@@ -11,19 +11,19 @@ const Avatar = ({user}) => {
   if (user) {
     userData = user
   } else {
-    const { data, loading, error } = useFetch(`users/${id}`, null, []);
+    const { data, loading, error } = useFetch(`users/${id}`, null, [window.location.href]);
     (!loading && !error) && (userData = data?.user[0]);
   }
     return (
       <>
-        <Link className="" to={`/users/${userData?.id}`}>
+        <NavLink className="" to={`/users/${userData?.id}`}>
           <img
             src={userData?.avatar}
             onError={HandleImageError}
             alt={userData?.nickname + "'s image"}
             className="avatar"
           />
-        </Link>
+        </NavLink>
       </>
     );
 }
