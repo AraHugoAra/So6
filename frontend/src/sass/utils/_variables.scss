@@ -1,6 +1,7 @@
 /** So6 colors */
 $colour-sausage: #EC9168;
 $colour-grey: #797B84;
+$colour-light-grey: #dbdbdb;
 $colour-brown: #764134;
 $colour-green: #12664F;
 
@@ -14,7 +15,7 @@ $colour-links: rgb(35, 35, 158);
 
 $colour-borders: $colour-secondary;
 $bg-main: $colour-white-grey;
-$colour-navbar-border: #dbdbdb;
+$colour-navbar-border: $colour-light-grey;
 
 // $colour-backgrounds: rgba(0, 0, 0, 0.204);
 
