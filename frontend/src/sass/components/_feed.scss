@@ -1,95 +1,12 @@
 .feed{
     &__vegan-mode{
         display: flex;
-        gap: 10px;
+        gap: 12px;
         justify-content: center;
         img{
-            width: 30px;
+            width: 24px;
             height: auto;
             object-fit: contain;
         }
     }
 }
-
-.post {
-    // &--modal {
-    //     z-index: 2;
-    // }
-    &__header{
-        display: flex;
-        justify-content: space-between;
-    }
-    &__link {
-        color: $colour-accent;
-        &:visited {
-            color: $colour-accent;
-        }
-    }
-    &__user{
-        display : flex;
-        align-items: center;
-        gap: 10px;
-        padding: 14px 4px 14px 16px;
-        &__text {
-            padding-left: 12px;
-            &__nickname {
-                font-size: 15px;
-                font-weight: 600;
-                &:hover{
-                    cursor: pointer;
-                    color: $colour-accent;
-                }
-            }
-            &__body {
-                font-size: 12px;
-                font-weight: 300;
-                padding-right: 12px;
-            }
-
-        }
-    }
-    &__buttons{
-        display: flex;
-        padding: 14px 4px 14px 16px;
-        gap: 16px;
-        margin: 4px;
-        align-items: flex-start;
-        &--salt:hover {
-            cursor: pointer;
-        }
-    }
-    &__media {
-        display: flex;
-        justify-content: center;
-        // position: relative;
-        // z-index: 0;
-            width: 100vw;
-            height: 100vw;
-            // height: 100vw;
-        // img { 
-        //     width: 100vw;
-        //     height: 100vw;
-        // };
-    }
-    &__vegan{
-        width :18px;
-        height: auto;
-        padding-right: 0.5em;
-    }
-    &__text{
-        .body{
-            border-top: solid 1px;
-            border-bottom: solid 1px;
-
-            padding: 0.5em;
-        }
-        .comments{
-            padding : 0.5em;
-            color: $colour-secondary;
-        }
-    }
-}
-
-// .feed {
-//     padding-bottom: 60px;
-// }
