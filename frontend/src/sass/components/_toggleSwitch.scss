@@ -1,6 +1,6 @@
 .toggle-switch {
     position: relative;
-    width: 75px;
+    // width: 75px;
     display: inline-block;
     vertical-align: middle;
     text-align: left;
@@ -27,7 +27,7 @@
         width: 50%;
         height: 34px;
         line-height: 34px;
-        font-size: 14px;
+        font-size: 12px;
         color: white;
         font-weight: bold;
         box-sizing: border-box;
@@ -39,7 +39,7 @@
         text-transform: uppercase;
         padding-left: 10px;
         background-color: $colour-green;
-        color: #fff;
+        color: $colour-white;
       }
     }
     &-disabled {
@@ -53,20 +53,20 @@
     &-inner:after {
       content: attr(data-no);
       text-transform: uppercase;
-      padding-right: 10px;
+      padding: 0 8px;
       background-color: #bbb;
-      color: #fff;
+      color: $colour-white;
       text-align: right;
     }
     &-switch {
       display: block;
       width: 24px;
       margin: 5px;
-      background: #fff;
+      background: $colour-white;
       position: absolute;
       top: 0;
       bottom: 0;
-      right: 40px;
+      // right: 40px;
       border: 0 solid #bbb;
       border-radius: 20px;
       transition: all 0.3s ease-in 0s;
