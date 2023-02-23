@@ -52,6 +52,7 @@ function likesRoutes(app, db)  {
               res.json({ status: 200, responseDB })
         }
         catch(error) {
+            console.log(error)
             res.send(error)
         }
     })
