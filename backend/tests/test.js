@@ -1,6 +1,6 @@
 import request from "supertest";
 import app from "../app";
-import { connection, seedData } from "./initDB";
+import { connection, dropData, seedData } from "./initDB";
 import usersRoutes from "../routes/usersRoutes.js";
 import commentsRoutes from "../routes/commentsRoutes.js";
 import postsRoutes from "../routes/postsRoutes.js";
@@ -23,9 +23,13 @@ beforeAll(async () => {
 });
 
 beforeEach(async () => {
-  //DROP && SEED
+  //DROP
   await connection.then(async (db) => {
-    seedData(db);
+    await dropData(db);
+  });
+  //SEED
+  await connection.then(async (db) => {
+    await seedData(db);
   });
 });
 
@@ -37,7 +41,14 @@ describe("Test the root path", () => {
         expect(res.status).toEqual(200);
       });
   });
-  // it("should return empty array", () => {
-  //   return request(app).get('/test').then(res => {expect(res.test).not.toBeFalsy()})
-  // })
 });
+
+describe("Test the users path", () => {
+  it("should send an array of users", () => { 
+    return request(app)
+      .get('/users')
+      .then((data) => {
+        expect(data._body.users).toHaveLength(5)
+      })
+  })
+})
