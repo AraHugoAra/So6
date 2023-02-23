@@ -9,6 +9,8 @@ import sessionManager from "./services/sessionManager.js";
 import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();
+
+// const port = process.env.PORT;
 const app = express();
 
 app.use(cors({ credentials: true, origin: true }));
@@ -47,4 +49,4 @@ connection.then(async (db) => {
   likesRoutes(app, db);
 });
 
-export { app, connection };
+export default app;
