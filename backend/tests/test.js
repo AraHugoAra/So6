@@ -24,4 +24,11 @@ describe("Test the users path", () => {
     const res = await request(app).get("/users");
     expect(res.body.users).toHaveLength(5);
   });
+
+  describe("Test comments path", () => {
+    it("should send a 200 when connected to all comments", async () => {
+      const result = await request(app).get("/comments");
+      expect(result.statusCode).toBe(200);
+    });
+  });
 });
