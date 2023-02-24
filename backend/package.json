@@ -7,11 +7,14 @@
     "express-session": "^1.17.3",
     "jest": "^29.4.3",
     "nodemon": "^2.0.20",
-    "promise-mysql": "^5.2.0",
-    "supertest": "^6.3.3"
+    "promise-mysql": "^5.2.0"
   },
   "scripts": {
     "test": "node --experimental-vm-modules  node_modules/jest/bin/jest.js --runInBand --detectOpenHandles --forceExit"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "supertest": "^6.3.3",
+    "supertest-session": "^4.1.0"
+  }
 }

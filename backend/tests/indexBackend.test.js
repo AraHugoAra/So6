@@ -2,8 +2,11 @@ import request from "supertest";
 import { app, connection } from "../app";
 import { dropData, seedData } from "./initDB";
 import postsRoutesTests from "./postsRoutesTests";
+import rootTests from "./rootTests";
+import usersRoutesTests from "./usersRoutesTests.js";
 
 beforeAll(async () => {
+  //CONNECT
   await connection.then(async (db) => {
     //DROP
     await dropData(db);
@@ -12,14 +15,6 @@ beforeAll(async () => {
   });
 });
 
-// beforeEach(async () => {
-// });
-
-describe("Test the root path", () => {
-  it("should sendStatus 200", async () => {
-    const res = await request(app).get("/");
-    expect(res.status).toEqual(200);
-  });
-});
-
+rootTests(request, app)
+usersRoutesTests(request, app)
 postsRoutesTests(request, app)

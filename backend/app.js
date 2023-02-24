@@ -1,20 +1,19 @@
-import express, { json, urlencoded } from 'express'
-import { createConnection } from 'promise-mysql'
-import usersRoutes from './routes/usersRoutes.js'
-import commentsRoutes from './routes/commentsRoutes.js'
-import postsRoutes from './routes/postsRoutes.js'
-import likesRoutes from './routes/likesRoutes.js'
-import cookieSetter from './services/cookieSetter.js'
-import sessionManager from './services/sessionManager.js'
-import cors from "cors"
-import dotenv from 'dotenv'
-dotenv.config()
-
-const app = express()
+import express, { json, urlencoded } from "express";
+import { createConnection } from "promise-mysql";
+import usersRoutes from "./routes/usersRoutes.js";
+import commentsRoutes from "./routes/commentsRoutes.js";
+import postsRoutes from "./routes/postsRoutes.js";
+import likesRoutes from "./routes/likesRoutes.js";
+import cookieSetter from "./services/cookieSetter.js";
+import sessionManager from "./services/sessionManager.js";
+import cors from "cors";
+import dotenv from "dotenv";
+dotenv.config();
+const app = express();
 
 app.use(cors({ credentials: true, origin: true }));
-app.use(json())
-app.use(urlencoded({extended: false}))
+app.use(json());
+app.use(urlencoded({ extended: false }));
 
 const connectionOptions = {
     host: process.env.DB_HOST,
@@ -24,8 +23,8 @@ const connectionOptions = {
     port: process.env.DB_PORT
 }
 
-sessionManager(app)//Config express-session
-cookieSetter(app) //SameSite: Lax
+sessionManager(app); //Config express-session
+cookieSetter(app); //SameSite: Lax
 
 //mysql-promise
 const connection = createConnection(connectionOptions)
