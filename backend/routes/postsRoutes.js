@@ -12,7 +12,7 @@ function postsRoutes(app, db) {
           "GROUP BY posts.id " +
           "ORDER BY posts.timestamp DESC"
       );
-      res.json({ status: 200, posts });
+      res.status(200).json({ posts });
     } catch (error) {
       res.send(error);
     }
@@ -29,7 +29,7 @@ function postsRoutes(app, db) {
           "WHERE posts.id= ?",
         [post_id]
       );
-      post.length ? res.json({ status: 200, post }) : res.sendStatus(404);
+      post.length ? res.status(200).json({ post }) : res.sendStatus(404);
     } catch (error) {
       res.send(error);
     }
@@ -46,7 +46,7 @@ function postsRoutes(app, db) {
           "ORDER BY posts.timestamp DESC",
         [user_id]
       );
-      posts.length ? res.json({ status: 200, posts }) : res.sendStatus(404);
+      posts.length ? res.status(200).json({ posts }) : res.sendStatus(404);
     } catch (error) {
       res.send(error);
     }
@@ -61,7 +61,7 @@ function postsRoutes(app, db) {
         "INSERT INTO posts (media, body, user_id, vegan) VALUES (?,?,?,?)",
         [media, body, user_id, vegan]
       );
-      res.json({ status: 200, responseDB });
+      res.status(200).json({ responseDB });
     } catch (error) {
       res.send(error);
     }
