@@ -18,7 +18,7 @@ app.use(urlencoded({extended: false}))
 
 const connectionOptions = {
     host: process.env.DB_HOST,
-    database: process.env.NODE_ENV = "test" ? process.env.DB_NAME + '_test' : process.env.DB_NAME,
+    database: process.env.NODE_ENV === "test" ? process.env.DB_NAME + '_test' : process.env.DB_NAME,
     user: process.env.DB_USER,
     password: process.env.DB_PW,
     port: process.env.DB_PORT
@@ -28,8 +28,9 @@ sessionManager(app)//Config express-session
 cookieSetter(app) //SameSite: Lax
 
 //mysql-promise
-createConnection(connectionOptions)
-    .then(async (db) => {
+const connection = createConnection(connectionOptions)
+
+connection.then(async (db) => {
         app.get('/', async (req, res) => {
             try {
                 res.json({status: 200, msg: "C'est OK, c'est BAT, c'est IN."})
@@ -44,4 +45,4 @@ createConnection(connectionOptions)
         likesRoutes(app, db)
     })
 
-export default app
+export {app, connection}
