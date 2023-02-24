@@ -31,24 +31,20 @@ describe("Test the users path", () => {
       expect(result.statusCode).toBe(200);
     });
     it("should show how many comments user_11 got", async () => {
-      const result = await request(app).get('/comments/11');
-      expect(result.body.comments).toHaveLength(3)
-    })
+      const result = await request(app).get("/comments/11");
+      expect(result.body.comments).toHaveLength(3);
+    });
     it("should show all comments from a post", async () => {
-      const result = await request(app).get('/posts/19/comments');
-      expect(result.body.comments).toHaveLength(3)
-    })
+      const result = await request(app).get("/posts/19/comments");
+      expect(result.body.comments).toHaveLength(3);
+    });
     it("shouldn't show any comments from a post", async () => {
-      const result = await request(app).get('/posts/9/comments');
-      expect(result.body?.comments).toHaveLength(0)
-    })
-    // it("shouldn't show any comments from a post", async () => {
-    //   const result = await request(app).get('/posts/9/comments');
-    //   expect(result.body?.comments).toHaveLength(0)
-    // })
-    // it("should raise an error if the body of comments contain more than 250 chars", async () => {
-    //   const result = await request(app).get('/comments/11');
-    //   expect(result.body.comments).toHaveLength(3)
-    // })
+      const result = await request(app).get("/posts/9/comments");
+      expect(result.body.comments).toHaveLength(0);
+    });
+    // it("should create a comment for a post", async () => {
+    //   const result = await request(app).post("/posts/9/comments/add");
+    //   expect(result.body).toBe(200);
+    // });
   });
 });

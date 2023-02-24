@@ -59,7 +59,7 @@ function commentsRoutes(app, db)  {
                 postId, 
                 userId]
             );
-            res.json({status: 200, respDB})
+            res.json({ status: 200, respDB });
         }
         catch(error) {
             res.json(error)

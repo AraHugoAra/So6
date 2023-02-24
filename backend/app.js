@@ -24,6 +24,7 @@ const connectionOptions = {
   user: process.env.DB_USER,
   password: process.env.DB_PW,
   port: process.env.DB_PORT,
+  charset: 'UTF8mb4'
 };
 
 sessionManager(app); //Config express-session
