@@ -1,54 +1,27 @@
 import request from "supertest";
-import app from "../app";
-import { connection, dropData, seedData } from "./initDB";
-import usersRoutes from "../routes/usersRoutes.js";
-import commentsRoutes from "../routes/commentsRoutes.js";
-import postsRoutes from "../routes/postsRoutes.js";
-import likesRoutes from "../routes/likesRoutes.js";
+import { app, connection } from "../app";
+import { dropData, seedData } from "./initDB";
 
 beforeAll(async () => {
+  //CONNECT
   await connection.then(async (db) => {
-    app.get("/", async (req, res) => {
-      try {
-        res.json({ status: 200, msg: "C'est OK, c'est BAT, c'est IN." });
-      } catch (error) {
-        res.send(error);
-      }
-    });
-    usersRoutes(app, db);
-    commentsRoutes(app, db);
-    postsRoutes(app, db);
-    likesRoutes(app, db);
-  });
-});
-
-beforeEach(async () => {
-  //DROP
-  await connection.then(async (db) => {
+    //DROP
     await dropData(db);
-  });
-  //SEED
-  await connection.then(async (db) => {
+    //SEED
     await seedData(db);
   });
 });
 
 describe("Test the root path", () => {
-  it("should sendStatus 200", () => {
-    return request(app)
-      .get("/")
-      .then((res) => {
-        expect(res.status).toEqual(200);
-      });
+  it("should sendStatus 200", async () => {
+    const res = await request(app).get("/");
+    expect(res.status).toEqual(200);
   });
 });
 
 describe("Test the users path", () => {
-  it("should send an array of users", () => { 
-    return request(app)
-      .get('/users')
-      .then((data) => {
-        expect(data._body.users).toHaveLength(5)
-      })
-  })
-})
+  it("should send an array of all 5 users", async () => {
+    const res = await request(app).get("/users");
+    expect(res.body.users).toHaveLength(5);
+  });
+});
