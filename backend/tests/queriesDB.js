@@ -17,6 +17,8 @@ export const seedQueries = [
   "ALTER TABLE likes MODIFY id bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4; ",
   "ALTER TABLE posts MODIFY id bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20; ",
   "ALTER TABLE users MODIFY id bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15; ",
+  "ALTER TABLE `users` ADD UNIQUE(`email`);",
+  "ALTER TABLE `users` ADD UNIQUE(`nickname`);",
   "ALTER TABLE posts ADD CONSTRAINT posts_ibfk_1 FOREIGN KEY (user_id) REFERENCES users (id);",
 ];
 

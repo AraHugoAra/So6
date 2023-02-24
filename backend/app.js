@@ -35,7 +35,7 @@ const connection = createConnection(connectionOptions);
 connection.then(async (db) => {
   app.get("/", async (req, res) => {
     try {
-      res.json({ status: 200, msg: "C'est OK, c'est BAT, c'est IN." });
+      res.status(200).json({msg: "C'est OK, c'est BAT, c'est IN." });
     } catch (error) {
       res.send(error);
     }
