@@ -30,5 +30,9 @@ describe("Test the users path", () => {
       const result = await request(app).get("/comments");
       expect(result.statusCode).toBe(200);
     });
+    it("should show how many comments user_id 11 got", async () => {
+      const result = await request(app).get('/comments/11');
+      expect(result.body.comments).toHaveLength(3)
+    })
   });
 });
