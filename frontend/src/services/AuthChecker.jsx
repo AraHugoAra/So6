@@ -17,8 +17,8 @@ export default function AuthChecker({ children }) {
                     credentials: 'include',
                     headers: { "Content-Type": "application/json" },
                 })
-                const json = await response.json()
-                if(json.status === 200) {
+                // const json = await response.json()
+                if(response.status === 200) {
                     setIsAuthenticated(true)
                     setLoading(false)
                 }

@@ -24,7 +24,7 @@ export default function Login() {
                 body: JSON.stringify(body),
             })
             const json = await response.json()
-            if (json.status === 200) {
+            if (response.status === 200) {
                 localStorage.setItem('avatar', json.session.user[0].avatar)
                 const userAvatar = localStorage.getItem('avatar')
                 localStorage.setItem('nickname', json.session.user[0].nickname)

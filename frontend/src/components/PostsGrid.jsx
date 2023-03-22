@@ -22,14 +22,14 @@ const PostsGrid = () => {
         {!loading && !error && data.status === 200 && (
             <UserProfile
               // key={data.posts[0].nickname}
-              nickname={data.posts[0]?.nickname}
-              avatar={data.posts[0]?.avatar}
+              nickname={data.json.posts[0]?.nickname}
+              avatar={data.json.posts[0]?.avatar}
             />
         )}
         <article className="posts-grid">
           <div className="posts-grid__row-images">
             {!loading && !error &&
-              data.posts.map((post) => (
+              data.json.posts.map((post) => (
                 <div key={post.id}>
                 <img
                   className="posts-grid__image"

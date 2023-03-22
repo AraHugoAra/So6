@@ -12,7 +12,7 @@ const Avatar = (props) => {
     userData = props.user
   } else {
     const { data, loading, error } = useFetch(`users/${id}`, null, [window.location.href]);
-    (!loading && !error) && (userData = data?.user[0]);
+    (!loading && !error) && (userData = data?.json.user[0]);
   }
     return (
       <>
