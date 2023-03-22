@@ -34,37 +34,46 @@ export default function Signup() {
             navigate('/')
         }
 
-    return(
-        <div className="container--new-post new-post">
-            <Link className='new-post__close' to="/">
-                <img src={close} alt="get back" />
-            </Link>
-            <div className="new-post__logo">
-                <img src={logo} alt="so6-logo" />
-                <p className='new-post__flavour-text' >Qu'allez-vous partager de bon avec vos amis aujourd'hui ?</p>
-            </div>
-            <div className="new-post__form">
-                <form onSubmit={(e) => handleSubmit(e)}>
-                    <UploadWidget 
-                        label="Téléverser une image" 
-                        description={"Votre image:"} 
-                        imageUploaded={imageUploaded} 
-                        setImageUploaded={setImageUploaded}
-                        style="big"
-                    />
-                    <label htmlFor="description">Description:</label>
-                    <input type="text" id="description" placeholder='(optionnelle)'/>
-                    {/* <div className="new-post__checkbox">
+    return (
+      <div className="container--new-post new-post">
+        <Link className="new-post__close" to="/">
+          <img src={close} alt="get back" />
+        </Link>
+        <div className="new-post__logo">
+          <img src={logo} alt="so6-logo" />
+          <p className="new-post__flavour-text">
+            Qu'allez-vous partager de bon avec vos amis ?
+          </p>
+        </div>
+        <div className="new-post__form">
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <UploadWidget
+              label="Téléverser une image"
+              description={"Votre image:"}
+              imageUploaded={imageUploaded}
+              setImageUploaded={setImageUploaded}
+              style="big"
+            />
+            {/* <label htmlFor="description">Description de votre image :</label> */}
+            <input
+              type="text"
+              id="description"
+              placeholder="Description de votre image"
+            />
+            {/* <div className="new-post__checkbox">
                         <label htmlFor="vegan">Vegan?</label>
                         <input type="checkbox" id="vegan" />
                     </div> */}
-                    <div className="feed__vegan-mode">
-                        <img className="feed__vegan-mode" src={veganIMG} />
-                        <ToggleSwitch comp="checkbox" setVeganMode={setChecked} />
-                    </div>
-                    <button type="submit">Partager</button>
-                </form>
+            <div className="feed__vegan-mode">
+            <div className="feed__vegan-title">
+             Ce post est-il végan ?
             </div>
+              <img className="feed__vegan-mode" src={veganIMG} />
+              <ToggleSwitch comp="checkbox" setVeganMode={setChecked} />
+            </div>
+            <button type="submit">Partager</button>
+          </form>
         </div>
-    )
+      </div>
+    );
 }

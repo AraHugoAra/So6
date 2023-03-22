@@ -1,12 +1,28 @@
 {
+  "name": "so6",
+  "private": true,
+  "version": "1.0.0",
+  "description": "The social media",
+  "main": "server.js",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
-    "nodemon": "^2.0.20",
     "promise-mysql": "^5.2.0"
+  },
+  "scripts": {
+    "start": "nodemon .",
+    "test": "node --experimental-vm-modules  node_modules/jest/bin/jest.js --runInBand --detectOpenHandles --forceExit"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "jest": "^29.4.3",
+    "superagent": "^8.0.9",
+    "supertest": "^6.3.3"
   },
   "type": "module"
 }
