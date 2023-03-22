@@ -19,7 +19,7 @@ export default function useFetch(endpoint, params = {}, dependencies = null) {
             try {
                 const response = await fetch(`${import.meta.env.VITE_BASE_URL}/${endpoint}`, fetchParams);
                 const json = await response.json();
-                setData(json);
+                setData({status: response.status, json});
                 setLoading(false);
             } catch (error) {
                 setError(error);

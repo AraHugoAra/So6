@@ -22,7 +22,7 @@ export default function Feed({}) {
 
 
   useEffect(() => {
-    !loading && setVeganPosts(data.posts.filter(post => post.vegan))
+    !loading && setVeganPosts(data.json.posts.filter(post => post.vegan))
   },[loading])
 
   return (
@@ -33,7 +33,7 @@ export default function Feed({}) {
       </div>
       {(!loading && !error) &&
         ( veganMode ? <Posts posts={veganPosts} modal={false} modalIsOpen={modalIsOpen} closeModal={closeModal} setIsOpen={setIsOpen}/>
-        : <Posts posts={data.posts} modal={false} modalIsOpen={modalIsOpen} closeModal={closeModal} setIsOpen={setIsOpen}/>
+        : <Posts posts={data.json.posts} modal={false} modalIsOpen={modalIsOpen} closeModal={closeModal} setIsOpen={setIsOpen}/>
         )}
     </div>
   );

@@ -20,38 +20,30 @@ const PostsGrid = () => {
     return (
       <>
         {!loading && !error && data.status === 200 && (
-          <UserProfile
-            key={data.posts[0]?.nickname}
-            nickname={data.posts[0]?.nickname || localStorage.nickname}
-            avatar={data.posts[0]?.avatar || localStorage.avatar}
-          />
+            <UserProfile
+              // key={data.posts[0].nickname}
+              nickname={data.json.posts[0]?.nickname}
+              avatar={data.json.posts[0]?.avatar}
+            />
         )}
         <article className="posts-grid">
           <div className="posts-grid__row-images">
-            {!loading && !error && (data.posts.length === 0 || !data.posts[0].media) ? (
-              <>
-                {console.log("data: ", data.posts)}
-                <div className="posts-grid__no-images">
-                  <p className="posts-grid__no-images__text">
-                    Pas d'images encore ? Postez-nous une petite saucisse pour
-                    commencer !
-                  </p>
-                </div>
-              </>
-            ) : (
-              <>
-                {!loading &&
-                  !error &&
-                  data.posts.map((post) => (
-                    <img
-                      key={post.id}
-                      className="posts-grid__image"
-                      src={post.media}
-                      alt={"image n°" + post.id}
-                    />
-                  ))}
-              </>
-            )}
+            {!loading && !error &&
+              data.json.posts.map((post) => (
+                <div key={post.id}>
+                <img
+                  className="posts-grid__image"
+                  src={post.media}
+                  alt={"image n°" + post.id}
+                  onClick={(e) => openModal(post.id)}
+                />
+                <PostDetail
+                  postId={modalIsOpen}
+                  modalIsOpen={post.id===modalIsOpen}
+                  closeModal={closeModal}
+                />
+              </div>
+              ))}
           </div>
         </article>
       </>

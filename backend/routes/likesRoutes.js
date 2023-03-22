@@ -13,9 +13,9 @@ function likesRoutes(app, db)  {
                 [user_id,target_id,target_type]
             )
             if (isLiked.length){
-                res.json({status : 200, isLiked : true, likeId : isLiked[0].id})
+                res.status(200).json({isLiked : true, likeId : isLiked[0].id})
             }else {
-                res.json({status : 200, isLiked : false})
+                res.status(200).json({isLiked : false})
             }
         }
         catch(error) {
@@ -32,7 +32,7 @@ function likesRoutes(app, db)  {
                 "SELECT target_id, target_type, COUNT(user_id) as number_of_like FROM `likes` WHERE (target_id, target_type) = (?,?)",
                 [target_id,target_type]
             )
-            res.json({status : 200, likes: likes})
+            res.status(200).json({likes})
         }
         catch(error) {
             res.send(error)
@@ -49,7 +49,7 @@ function likesRoutes(app, db)  {
                 "INSERT INTO likes (user_id, target_id,target_type) VALUES (?,?,?)",
                 [user_id, target_id,target_type]
               );
-              res.json({ status: 200, responseDB })
+              res.status(200).json({responseDB})
         }
         catch(error) {
             console.log(error)
@@ -66,7 +66,7 @@ function likesRoutes(app, db)  {
                 "DELETE FROM likes WHERE id = ? AND user_id = ?",
                 [id, user_id]
               );
-              res.json({ status: 200, responseDB })
+              res.status(200).json({responseDB})
         }
         catch(error) {
             res.send(error)
