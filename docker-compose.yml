@@ -64,4 +64,3 @@ services:
       - ./frontend/src:/app/frontend/src
     links:
       - server
-    command: sh -c "npm run dev"
