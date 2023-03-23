@@ -8,15 +8,13 @@ x-common-variables: &common-variables
   DB_PW: "root"
   DB_USER: "root"
   DB_NAME: "so6"
-  DB_HOST: phpmyadmin
-  # DB_HOST: host.docker.internal
-  # MYSQL_ALLOW_EMPTY_PASSWORD: 1
-  MYSQL_RANDOM_ROOT_PASSWORD: true
+  DB_PW: "root"
+  MYSQL_ROOT_PASSWORD: "root"
 
 services:
   mysql-db:
-    platform: linux/arm64/v8
-    image: mysql:latest
+    platform: linux/x86_64
+    image: mysql:5.7
     container_name: mysql_so6
     environment:
       <<: *common-variables
@@ -27,7 +25,7 @@ services:
     volumes:
       - ./db/sample.sql:/docker-entrypoint-initdb.d/sample.sql
   phpmyadmin:
-    platform: linux/amd64
+    platform: linux/x86_64
     depends_on:
       - mysql-db
     image: phpmyadmin/phpmyadmin
@@ -46,13 +44,14 @@ services:
       - mysql-db
     environment:
       <<: *common-variables
-      MYSQL_HOST_IP: mysql-db
+      DB_HOST: mysql-db
     ports:
       - 4000:4000
     volumes:
       - ./backend:/app/backend
     links:
       - mysql-db
+    restart: always
   client:
     build: ./frontend
     container_name: client_so6
