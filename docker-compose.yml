@@ -1,0 +1,68 @@
+version: "3.7"
+
+x-common-variables: &common-variables
+  SECRET: "dmtqK?X$?F#9Xq3!"
+  PORT: 4000
+  PORT_TEST: 4001
+  DB_PORT: 3306
+  DB_PW: "root"
+  DB_USER: "root"
+  DB_NAME: "so6"
+  DB_HOST: phpmyadmin
+  # DB_HOST: host.docker.internal
+  # MYSQL_ALLOW_EMPTY_PASSWORD: 1
+  MYSQL_RANDOM_ROOT_PASSWORD: true
+
+services:
+  mysql-db:
+    platform: linux/arm64/v8
+    image: mysql:latest
+    container_name: mysql_so6
+    environment:
+      <<: *common-variables
+      MYSQL_DATABASE: so6
+    ports:
+      - 3306:3306
+    restart: unless-stopped
+    volumes:
+      - ./db/sample.sql:/docker-entrypoint-initdb.d/sample.sql
+  phpmyadmin:
+    platform: linux/amd64
+    depends_on:
+      - mysql-db
+    image: phpmyadmin/phpmyadmin
+    container_name: phpadmin_so6
+    environment:
+      PMA_HOST: mysql-db
+    links:
+      - mysql-db:mysql-db
+    ports:
+      - 8080:80
+    restart: always
+  server:
+    build: ./backend
+    container_name: node_server_so6
+    depends_on:
+      - mysql-db
+    environment:
+      <<: *common-variables
+      MYSQL_HOST_IP: mysql-db
+    ports:
+      - 4000:4000
+    volumes:
+      - ./backend:/app/backend
+    links:
+      - mysql-db
+  client:
+    build: ./frontend
+    container_name: client_so6
+    environment:
+      <<: *common-variables
+      NODE_PATH: src
+    ports:
+      - 5173:5173
+    volumes:
+      - ./frontend/src:/app/frontend/src
+    links:
+      - server
+    command: sh -c "npm run dev"

@@ -66,6 +66,7 @@ function App() {
               </AuthChecker>
             }
           />
+          <Route path="*" element={<p><span style={{fontStyle: 'italic', fontSize: '10px'}}>Mario </span>Kart sans carte ?</p>}/>
         </Routes>
       </UserContext.Provider>
     </AuthContext.Provider>
