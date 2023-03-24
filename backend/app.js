@@ -1,5 +1,5 @@
 import express, { json, urlencoded } from "express";
-import { createConnection } from "promise-mysql";
+import { createPool } from "promise-mysql";
 import usersRoutes from "./routes/usersRoutes.js";
 import commentsRoutes from "./routes/commentsRoutes.js";
 import postsRoutes from "./routes/postsRoutes.js";
@@ -15,19 +15,26 @@ app.use(cors({ credentials: true, origin: true }));
 app.use(json());
 app.use(urlencoded({ extended: false }));
 
-const connectionOptions = {
-    host: process.env.DB_HOST,
-    database: process.env.NODE_ENV === "test" ? process.env.DB_NAME + '_test' : process.env.DB_NAME,
-    user: process.env.DB_USER,
-    password: process.env.DB_PW,
-    port: process.env.DB_PORT
-}
+// const connectionOptions = {
+//     host: process.env.DB_HOST,
+//     database: process.env.NODE_ENV === "test" ? process.env.DB_NAME + '_test' : process.env.DB_NAME,
+//     user: process.env.DB_USER,
+//     password: process.env.DB_PW,
+//     port: process.env.DB_PORT
+// }
+
 
 sessionManager(app); //Config express-session
 cookieSetter(app); //SameSite: Lax
 
 //mysql-promise
-const connection = createConnection(connectionOptions)
+// const connection = createConnection(connectionOptions)
+const connection = createPool({
+  host: process.env.MYSQL_HOST_IP,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE,
+});
 
 connection.then(async (db) => {
         app.get('/', async (req, res) => {

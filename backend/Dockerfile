@@ -12,8 +12,12 @@ WORKDIR /app
 # where available (npm@5+)
 COPY package*.json .
 
-# Install node dependencies
-RUN npm i
+# Update npm | Install pnpm | Set PNPM_HOME | Install global packages
+RUN npm i -g npm@latest; \
+    # Install pnpm
+    npm install -g pnpm; \
+    # Install node dependencies
+    pnpm i
 
 # Bundle app source
 COPY . .

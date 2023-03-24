@@ -12,13 +12,17 @@ WORKDIR /app
 # where available (npm@5+)
 COPY package*.json .
 
-# Install node dependencies
-RUN npm i
+# Update npm | Install pnpm | Set PNPM_HOME | Install global packages
+RUN npm i -g npm@latest; \
+    # Install pnpm
+    npm install -g pnpm; \
+    # Install node dependencies
+    pnpm i
 
 # Bundle app source
 COPY . .
 
-# exposes port 8080
-EXPOSE 8080
+# exposes port 5173
+EXPOSE 5173
 
-CMD [ "node", "server.js" ]
+CMD [ "pnpm", "dev" ]
