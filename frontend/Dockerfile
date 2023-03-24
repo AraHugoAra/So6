@@ -4,6 +4,7 @@ FROM node:18-alpine
 # Install dependencies such as C++ compiler which is needed by some nodejs packages
 # RUN apt update && apt install build-essential -y
 
+RUN mkdir -p /app 
 # Create app directory
 WORKDIR /app
 
@@ -13,16 +14,16 @@ WORKDIR /app
 COPY package*.json .
 
 # Update npm | Install pnpm | Set PNPM_HOME | Install global packages
-RUN npm i -g npm@latest; \
-    # Install pnpm
-    npm install -g pnpm; \
+# RUN npm i -g npm@latest; \
+#     # Install pnpm
+#     npm install -g pnpm; \
     # Install node dependencies
-    pnpm i
 
 # Bundle app source
 COPY . .
 
+RUN   npm i
 # exposes port 5173
 EXPOSE 5173
 
-CMD [ "pnpm", "dev" ]
+CMD [ "npm", "start" ]

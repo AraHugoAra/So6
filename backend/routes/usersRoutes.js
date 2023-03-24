@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import isAuthenticated from "../middleware/isAuthenticated.js";
 const saltRounds = 10;
 
