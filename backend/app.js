@@ -1,5 +1,5 @@
 import express, { json, urlencoded } from "express";
-import { createConnection } from "promise-mysql";
+import { createPool } from "promise-mysql";
 import usersRoutes from "./routes/usersRoutes.js";
 import commentsRoutes from "./routes/commentsRoutes.js";
 import postsRoutes from "./routes/postsRoutes.js";
@@ -27,7 +27,7 @@ sessionManager(app); //Config express-session
 cookieSetter(app); //SameSite: Lax
 
 //mysql-promise
-const connection = createConnection(connectionOptions)
+const connection = createPool(connectionOptions)
 
 connection.then(async (db) => {
         app.get('/', async (req, res) => {
