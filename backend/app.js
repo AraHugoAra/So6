@@ -15,40 +15,29 @@ app.use(cors({ credentials: true, origin: true }));
 app.use(json());
 app.use(urlencoded({ extended: false }));
 
-// const connectionOptions = {
-//     host: process.env.DB_HOST,
-//     database: process.env.NODE_ENV === "test" ? process.env.DB_NAME + '_test' : process.env.DB_NAME,
-//     user: process.env.DB_USER,
-//     password: process.env.DB_PW,
-//     port: process.env.DB_PORT
-// }
-
-
 sessionManager(app); //Config express-session
 cookieSetter(app); //SameSite: Lax
 
-//mysql-promise
-// const connection = createConnection(connectionOptions)
 const connection = createPool({
   host: process.env.MYSQL_HOST_IP,
   user: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASSWORD,
   database: process.env.MYSQL_DATABASE,
+  // database: process.env.NODE_ENV === "test" ? process.env.DB_NAME + '_test' : process.env.DB_NAME,
 });
 
 connection.then(async (db) => {
-        app.get('/', async (req, res) => {
-            try {
-                res.json({status: 200, msg: "C'est OK, c'est BAT, c'est IN."})
-            }
-            catch(error) {
-                res.send(error)
-            }
-        })
-        usersRoutes(app, db)
-        commentsRoutes(app, db);
-        postsRoutes(app,db)
-        likesRoutes(app, db)
-    })
+  app.get("/", async (req, res) => {
+    try {
+      res.json({ status: 200, msg: "C'est OK, c'est BATH, c'est IN." });
+    } catch (error) {
+      res.send(error);
+    }
+  });
+  usersRoutes(app, db);
+  commentsRoutes(app, db);
+  postsRoutes(app, db);
+  likesRoutes(app, db);
+});
 
-export {app, connection}
+export { app, connection };

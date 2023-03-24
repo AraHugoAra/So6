@@ -13,15 +13,15 @@ WORKDIR /app
 # where available (npm@5+)
 COPY package*.json .
 
-# Update npm | Install pnpm | Set PNPM_HOME | Install global packages
-# RUN npm i -g npm@latest; \
-#     # Install pnpm
-#     npm install -g pnpm; \
-    # Install node dependencies
 
 # Bundle app source
 COPY . .
 
+# Update npm | Install pnpm | Set PNPM_HOME | Install global packages
+# RUN npm i -g npm@latest; \
+#     # Install pnpm
+#     npm install -g pnpm; \
+# Install node dependencies
 RUN   npm i
 # exposes port 5173
 EXPOSE 5173

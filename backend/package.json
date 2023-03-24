@@ -2,7 +2,7 @@
   "name": "so6",
   "private": true,
   "version": "1.0.0",
-  "description": "The social media",
+  "description": "The So6 social media",
   "main": "server.js",
   "dependencies": {
     "bcryptjs": "^2.4.3",

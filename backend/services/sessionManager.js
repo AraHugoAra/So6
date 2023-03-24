@@ -2,7 +2,7 @@ import session from 'express-session'
 
 export default function sessionManager(app) {
     app.use(session({
-        secret : process.env.SECRET,
+        secret : process.env.ENV_SECRET,
         resave : false,
         saveUninitialized : true,
         cookie: {
